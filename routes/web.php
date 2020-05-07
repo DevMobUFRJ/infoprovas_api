@@ -14,6 +14,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return DB::select("SELECT * FROM users");
-    //return $router->app->version();
+    return $router->app->version();
 });

@@ -13,12 +13,12 @@ class CreateFirstTables extends Migration
      */
     public function up()
     {
-        Schema::create('curso', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
         });
 
-        Schema::create('disciplina', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->id();
             $table->string('codigo');
             $table->string('nome');
@@ -26,25 +26,25 @@ class CreateFirstTables extends Migration
 
             // FK
             $table->unsignedBigInteger('curso_id');
-            $table->foreign('curso_id')->references('id')->on('curso');
+            $table->foreign('curso_id')->references('id')->on('cursos');
         });
 
-        Schema::create('docente', function (Blueprint $table) {
+        Schema::create('docentes', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             
             // FK
             $table->unsignedBigInteger('curso_id');
-            $table->foreign('curso_id')->references('id')->on('curso');
+            $table->foreign('curso_id')->references('id')->on('cursos');
         
         });
 
-        Schema::create('usuario_banido', function (Blueprint $table) {
+        Schema::create('usuarios_banidos', function (Blueprint $table) {
             $table->id();
             $table->string('google_id', 90);
         });
 
-        Schema::create('prova', function (Blueprint $table) {
+        Schema::create('provas', function (Blueprint $table) {
             $table->id();
             $table->string('periodo', 6);
             $table->string('arquivo', 200);
@@ -54,8 +54,8 @@ class CreateFirstTables extends Migration
             // FKs
             $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger('docente_id');
-            $table->foreign('disciplina_id')->references('id')->on('disciplina');
-            $table->foreign('docente_id')->references('id')->on('docente');
+            $table->foreign('disciplina_id')->references('id')->on('disciplinas');
+            $table->foreign('docente_id')->references('id')->on('docentes');
         });        
     }
 
@@ -66,10 +66,10 @@ class CreateFirstTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prova');
-        Schema::dropIfExists('usuario_banido');
-        Schema::dropIfExists('docente');
-        Schema::dropIfExists('disciplina');
-        Schema::dropIfExists('curso');
+        Schema::dropIfExists('provas');
+        Schema::dropIfExists('usuarios_banidos');
+        Schema::dropIfExists('docentes');
+        Schema::dropIfExists('disciplinas');
+        Schema::dropIfExists('cursos');
     }
 }
