@@ -44,6 +44,12 @@ class CreateFirstTables extends Migration
             $table->string('google_id', 90);
         });
 
+        Schema::create('tipos_provas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->integer('ordem');
+        });
+
         Schema::create('provas', function (Blueprint $table) {
             $table->id();
             $table->string('periodo', 6);
@@ -54,8 +60,10 @@ class CreateFirstTables extends Migration
             // FKs
             $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('tipos_provas_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas');
             $table->foreign('docente_id')->references('id')->on('docentes');
+            $table->foreign('tipos_provas_id')->references('id')->on('tipos_provas');
         });        
     }
 
@@ -67,6 +75,7 @@ class CreateFirstTables extends Migration
     public function down()
     {
         Schema::dropIfExists('provas');
+        Schema::dropIfExists('tipos_provas');
         Schema::dropIfExists('usuarios_banidos');
         Schema::dropIfExists('docentes');
         Schema::dropIfExists('disciplinas');
