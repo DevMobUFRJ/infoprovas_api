@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $exam_types_id
  * @property-read \App\Subject $subject
  * @property-read \App\Professor $professor
- * @property-read \App\ExamType $tipo_prova
+ * @property-read \App\ExamType $exam_type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam query()
@@ -47,7 +47,7 @@ class Exam extends Model
         return $this->belongsTo('App\Professor');
     }
 
-    public function tipo_prova()
+    public function exam_type()
     {
         return $this->belongsTo('App\ExamType');
     }

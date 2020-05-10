@@ -23,4 +23,13 @@ class BannedUser extends Model
     protected $fillable = [
         'id', 'google_id',
     ];
+
+    function is_banned($google_id){
+        $course = BannedUser::whereGoogleId($google_id)->get()->first();
+        if(empty($course)){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
