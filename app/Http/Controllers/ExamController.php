@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exam;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -16,7 +15,8 @@ class ExamController extends Controller
             return $this->resource_error();
         }
 
-        return response()->json($subject->exams);
+        $exams = $subject->exams()->with(['exam_type', 'professor', 'subject'])->get();
+        return response()->json($exams);
     }
 
     function get(Request $request, $course_id, $subject_id, $exam_id)
@@ -28,7 +28,7 @@ class ExamController extends Controller
         }
 
         // Validate exam for subject
-        $exam = $subject->exams()->where('id', $exam_id)->get()->first();
+        $exam = $subject->exams()->where('id', $exam_id)->with(['exam_type', 'professor', 'subject'])->get()->first();
         if (empty($exam)) {
             return $this->resource_error();
         }
