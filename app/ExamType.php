@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
  * App\ExamType
  *
  * @property int $id
- * @property string $nome
- * @property int $ordem
+ * @property string $name
+ * @property int $order
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Exam[] $Exams
- * @property-read int|null $Exams_count
+ * @property-read int|null $exams_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType whereNome($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType whereOrdem($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ExamType whereOrder($value)
  * @mixin \Eloquent
  */
 class ExamType extends Model

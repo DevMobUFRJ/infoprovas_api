@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property string $nome
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
- * @property-read int|null $subjects_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Professor[] $professors
  * @property-read int|null $professors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subject[] $subjects
+ * @property-read int|null $subjects_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Course newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Course newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Course query()

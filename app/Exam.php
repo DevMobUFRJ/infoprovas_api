@@ -8,27 +8,27 @@ use Illuminate\Database\Eloquent\Model;
  * App\Exam
  *
  * @property int $id
- * @property string $periodo
- * @property string $arquivo
+ * @property string $semester
+ * @property string $file
  * @property string|null $google_id
- * @property int $denuncias
+ * @property int $reports
  * @property int $subject_id
  * @property int $professor_id
- * @property int $exam_types_id
- * @property-read \App\Subject $subject
- * @property-read \App\Professor $professor
+ * @property int $exam_type_id
  * @property-read \App\ExamType $exam_type
+ * @property-read \App\Professor $professor
+ * @property-read \App\Subject $subject
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereArquivo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereDenuncias($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereSubjectId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereProfessorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereExamTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereGoogleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam wherePeriodo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereExamTypesId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereProfessorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereReports($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereSemester($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereSubjectId($value)
  * @mixin \Eloquent
  */
 class Exam extends Model

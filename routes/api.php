@@ -4,12 +4,19 @@
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
-    /* Course */
+    /* Courses */
     $router->get('/courses', 'CourseController@getAll');
     $router->get('/courses/{course_id}', 'CourseController@get');
 
-    /* Subject */
+    /* Subjects */
     $router->get('/courses/{course_id}/subjects', 'SubjectController@getAll');
     $router->get('/courses/{course_id}/subjects/{subject_id}', 'SubjectController@get');
+
+    /* Exams */
+    $router->get('/courses/{course_id}/subjects/{subject_id}/exams', 'ExamController@getAll');
+    $router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}', 'ExamController@get');
+    $router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}/file', 'ExamController@getPDF');
+    // The route below apparently requires additional nginx/apache setup to be correctly loaded.
+    //$router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}.pdf', 'ExamController@getPDF');
 });
 

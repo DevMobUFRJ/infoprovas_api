@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * App\Professor
  *
  * @property int $id
- * @property string $nome
+ * @property string $name
  * @property int $course_id
  * @property-read \App\Course $course
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Exam[] $exams
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Professor query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Professor whereCourseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Professor whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Professor whereNome($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Professor whereName($value)
  * @mixin \Eloquent
  */
 class Professor extends Model
