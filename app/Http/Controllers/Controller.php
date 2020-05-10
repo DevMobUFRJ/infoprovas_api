@@ -11,6 +11,6 @@ class Controller extends BaseController
      */
     function resource_error(){
         //TODO Localization
-        return response()->json(['error' => 'Recurso inexistente'], 404);
+        return response()->json(['error' => 'Resource missing'], 404);
     }
 }

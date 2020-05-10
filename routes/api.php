@@ -4,12 +4,12 @@
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
-    /* Curso */
-    $router->get('/cursos', 'CursoController@getAll');
-    $router->get('/cursos/{curso_id}', 'CursoController@get');
+    /* Course */
+    $router->get('/courses', 'CourseController@getAll');
+    $router->get('/courses/{course_id}', 'CourseController@get');
 
-    /* Disciplina */
-    $router->get('/cursos/{curso_id}/disciplinas', 'DisciplinaController@getAll');
-    $router->get('/cursos/{curso_id}/disciplinas/{disciplina_id}', 'DisciplinaController@get');
+    /* Subject */
+    $router->get('/courses/{course_id}/subjects', 'SubjectController@getAll');
+    $router->get('/courses/{course_id}/subjects/{subject_id}', 'SubjectController@get');
 });
 
