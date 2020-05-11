@@ -23,5 +23,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/exam_types', 'ExamTypeController@getAll');
     $router->get('/exam_types/{exam_type_id}', 'ExamTypeController@get');
 
+    /* Professors */
+    $router->get('/courses/{course_id}/professors', 'ProfessorController@getAll');
+    $router->get('/courses/{course_id}/professors/{professor_id}', 'ProfessorController@get');
+
 });
 
