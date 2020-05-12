@@ -1,0 +1,5 @@
+insert into courses values (1, "Ciência da Computação"), (2, "Administração");
+insert into professors values (1, "Tony Stark", 1), (2, "George VI", 1), (3, "Jeff Bezos", 2);
+insert into subjects values (1, "MAB123", "Sistemas de Informação", 1, 1), (2, "MAB121", "Organização da informação", 2, 1), (3, "MAA110", "Administração 101", 1, 2);
+insert into exam_types values (1, "Prova 1", 1), (2, "Prova 2", 2), (3, "Prova 3/Final", 3), (4, "Testes/Listas", 4), (5, "Outra", 5);
+insert into exams values (1, "2020.1", "mab123/tony_2020_1_p1.pdf", "9074981498141209", 0, 1, 1, 1), (2, "2019.2", "mab121/tony_2019_2_p1.pdf", "9074981498141209", 0, 2, 1, 1);

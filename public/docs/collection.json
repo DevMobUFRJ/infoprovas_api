@@ -1,0 +1,433 @@
+{
+    "variables": [],
+    "info": {
+        "name": "Infoprovas API",
+        "_postman_id": "b7f26157-fc44-4f20-a30d-15ebe4101c5b",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Courses",
+            "description": "Course details and management",
+            "item": [
+                {
+                    "name": "List all courses",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get course information",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Exam Types",
+            "description": "\nThe Exam Type is a class to differentiate exams, like Frist, Second, Third, or Final Exams.\n\nEvery exam has a Type. The Exam Type information is usually sent along with the exam on a normal request, to\navoid the need for multiple requests.",
+            "item": [
+                {
+                    "name": "List Exam Types",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/exam_types",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get Exam Type information",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/exam_types\/:exam_type_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Exams",
+            "description": "Exams details and management.\n\nThis is the main part of the API, allowing you to list exams, see exam details and the files.\n\nEvery route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid\nprogramming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.",
+            "item": [
+                {
+                    "name": "List exams by subject",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects\/:subject_id\/exams",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get exam information by subject",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects\/:subject_id\/exams\/:exam_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get exam PDF file by subject.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects\/:subject_id\/exams\/:exam_id\/file",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "List exams by professor",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get exam information by professor",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get exam PDF file by professor",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id\/file",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Professors",
+            "description": "Professors details.\n\nEvery exam has a Professor. The professor information (name and ID) is usually sent along with the exam on a\nnormal request, to avoid the need for multiple requests.",
+            "item": [
+                {
+                    "name": "List Professors of a Course",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professors",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get professor details by Course",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professors\/:professor_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Subjects",
+            "description": "Subject details.\n\nEvery exam belongs to a subject. The subject information (name, code, id etc) is usually sent along with\nthe exam on a normal request, to avoid the need for multiple requests.",
+            "item": [
+                {
+                    "name": "List subjects on a Course",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Get subject details by course",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects\/:subject_id",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        }
+    ]
+}

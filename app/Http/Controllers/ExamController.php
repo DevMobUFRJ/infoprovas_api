@@ -2,15 +2,30 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * @group Exams
+ * Exams details and management.
+ *
+ * This is the main part of the API, allowing you to list exams, see exam details and the files.
+ *
+ * Every route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid
+ * programming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.
+ */
 use App\Exam;
 use App\Professor;
 use App\Subject;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Nullable;
-use phpDocumentor\Reflection\Types\String_;
 
 class ExamController extends Controller
 {
+    /**
+     * List exams by subject
+     * @param Request $request
+     * @param $course_id int
+     * @param $subject_id int
+     * @return JsonResponse
+     */
     function getAllBySubject(Request $request, $course_id, $subject_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, null);
@@ -22,6 +37,14 @@ class ExamController extends Controller
         return response()->json($exams);
     }
 
+    /**
+     * Get exam information by subject
+     * @param Request $request
+     * @param $course_id
+     * @param $subject_id
+     * @param $exam_id
+     * @return JsonResponse
+     */
     function getBySubject(Request $request, $course_id, $subject_id, $exam_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
@@ -33,6 +56,14 @@ class ExamController extends Controller
         return response()->json($exam);
     }
 
+    /**
+     * Get exam PDF file by subject.
+     * @param Request $request
+     * @param $course_id
+     * @param $subject_id
+     * @param $exam_id
+     * @return JsonResponse PDF file if it exists. Error otherwise.
+     */
     function getPDFBySubject(Request $request, $course_id, $subject_id, $exam_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
@@ -44,6 +75,13 @@ class ExamController extends Controller
         return $this->send_file_response($exam->file);
     }
 
+    /**
+     * List exams by professor
+     * @param Request $request
+     * @param $course_id
+     * @param $professor_id
+     * @return JsonResponse
+     */
     function getAllByProfessor(Request $request, $course_id, $professor_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, null);
@@ -55,6 +93,14 @@ class ExamController extends Controller
         return response()->json($exams);
     }
 
+    /**
+     * Get exam information by professor
+     * @param Request $request
+     * @param $course_id
+     * @param $professor_id
+     * @param $exam_id
+     * @return JsonResponse
+     */
     function getByProfessor(Request $request, $course_id, $professor_id, $exam_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
@@ -66,6 +112,14 @@ class ExamController extends Controller
         return response()->json($exam);
     }
 
+    /**
+     * Get exam PDF file by professor
+     * @param Request $request
+     * @param $course_id
+     * @param $professor_id
+     * @param $exam_id
+     * @return JsonResponse PDF file if it exists. Error otherwise.
+     */
     function getPDFByProfessor(Request $request, $course_id, $professor_id, $exam_id)
     {
         $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
@@ -80,11 +134,14 @@ class ExamController extends Controller
     /**
      * Default response with a PDF file to show the user.
      * @param String $file_path File path of the PDF file
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse Response to be returned to the user. Can be the file, or a JSON error.
      */
     private function send_file_response($file_path){
         //TODO Read file from folder and show to the user.
-        return response()->json(["TODO" => "TODO: Implement PDF file response to show the file on ExamController@getPDF", "file" => $file_path]);
+        return response()->json([
+            "TODO" => "Implement PDF response ExamController@send_file_response",
+            "file" => $file_path
+        ]);
     }
 
     /**
@@ -94,7 +151,7 @@ class ExamController extends Controller
      * @param int|null $subject_id
      * @param int|null $professor_id
      * @param int|null $exam_id
-     * @return \Illuminate\Http\JsonResponse|null Returns null if the IDs are correct. Or a JSON response otherwise.
+     * @return JsonResponse|null Returns null if the IDs are correct. Or a JSON response otherwise.
      */
     private function validate_input_ids($course_id, $subject_id, $professor_id, $exam_id){
         if(is_null($course_id)){
