@@ -1,9 +1,12 @@
 # InfoProvas API
 API/Backend do sistema do InfoProvas, consumida pelos apps e pelo site.
 
-Feito com PHP 7.4 e Lumen, e banco de dados MySQL.
+Documentação da API: https://devmobufrj.github.io/infoprovas_api/
 
 ## Setup local
+A API usa PHP 7.4 e Lumen, e banco de dados MySQL. Siga os passos abaixo para configurar o ambiente
+de desenvolvimento.
+
 1. Instalar Apache, PHP, MariaDB e dependências: `sudo apt install apache2 mariadb-server php7.4 php7.4-common php7.4-cli php7.4-mbstring php7.4-mysql php7.4-zip php7.4-xml openssl curl`
 2. Baixar o composer: `curl -sS https://getcomposer.org/installer -o composer-setup.php`
 3. Instalar o composer: 'sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer'
