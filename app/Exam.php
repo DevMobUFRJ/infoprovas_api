@@ -16,12 +16,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $subject_id
  * @property int $professor_id
  * @property int $exam_type_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\ExamType $exam_type
  * @property-read \App\Professor $professor
  * @property-read \App\Subject $subject
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Exam onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereExamTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereGoogleId($value)
@@ -30,6 +36,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereReports($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereSemester($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereSubjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Exam whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Exam withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Exam withoutTrashed()
  * @mixin \Eloquent
  */
 class Exam extends Model
@@ -40,14 +49,17 @@ class Exam extends Model
      * Initially, nothing will be automatically deleted or removed, only manually.
      */
     use SoftDeletes;
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
-        'id', 'periodo', 'arquivo', 'google_id', 'denuncias', 'subject_id', 'professor_id', 'exam_types_id', 'active'
+        'id', 'semester', 'file', 'google_id', 'reports', 'subject_id', 'professor_id', 'exam_types_id'
     ];
 
-    public $timestamps = false;
+    /** @var string[]
+     * Fields that don't need to be shown on a JSON response
+     */
+    protected $hidden = ['google_id', 'file'];
 
-    protected $dates = ['created_at'];
 
     public function subject()
     {

@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
 class Professor extends Model
 {
     protected $fillable = [
-        'id', 'nome', 'course_id'
+        'id', 'name', 'course_id'
     ];
 
     public function course()

@@ -24,7 +24,7 @@ class BannedUser extends Model
         'id', 'google_id',
     ];
 
-    function is_banned($google_id){
+    static function is_banned($google_id){
         $course = BannedUser::whereGoogleId($google_id)->get()->first();
         if(empty($course)){
             return false;

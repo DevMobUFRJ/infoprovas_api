@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $fillable = [
-        'id', 'nome',
+        'id', 'name',
     ];
 
     public function subjects()
