@@ -10,10 +10,12 @@ namespace App\Http\Controllers;
  *
  * Every route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid
  * programming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.
+ * Each ID will then be verified to have a real relationship, instead of just considering the exam id alone.
  */
 use App\Exam;
 use App\Professor;
 use App\Subject;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -76,6 +78,30 @@ class ExamController extends Controller
     }
 
     /**
+     * Report exam by subject.
+     *
+     * This route should be used to report fake/wrong exams, spam, or any inappropriate content.
+     *
+     * The body of this POST request doesn't need any information.
+     * @param Request $request
+     * @param $course_id
+     * @param $professor_id
+     * @param $exam_id
+     * @return JsonResponse The updated exam. Error otherwise.
+     */
+    function reportBySubject(Request $request, $course_id, $subject_id, $exam_id)
+    {
+        $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
+        if(!is_null($ids_validation)){
+            return $ids_validation;
+        }
+
+        $exam = $this->increment_report($exam_id);
+
+        return response()->json($exam);
+    }
+
+    /**
      * List exams by professor
      * @param Request $request
      * @param $course_id
@@ -129,6 +155,42 @@ class ExamController extends Controller
 
         $exam = Exam::find($exam_id)->first();
         return $this->send_file_response($exam->file);
+    }
+
+    /**
+     * Report exam by professor.
+     *
+     * This route should be used to report fake/wrong exams, spam, or any inappropriate content.
+     *
+     * The body of this POST request doesn't need any information.
+     * @param Request $request
+     * @param $course_id
+     * @param $professor_id
+     * @param $exam_id
+     * @return JsonResponse The updated exam. Error otherwise.
+     */
+    function reportByProfessor(Request $request, $course_id, $professor_id, $exam_id)
+    {
+        $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
+        if(!is_null($ids_validation)){
+            return $ids_validation;
+        }
+
+        $exam = $this->increment_report($exam_id);
+
+        return response()->json($exam);
+    }
+
+    /**
+     * Increment the reports on a given exam
+     * @param $exam_id
+     * @return Exam|Model|mixed|object|null Updated exam object
+     */
+    private function increment_report($exam_id){
+        $exam = Exam::find($exam_id)->first();
+        $exam->reports = $exam->reports + 1;
+        $exam->save();
+        return $exam;
     }
 
     /**

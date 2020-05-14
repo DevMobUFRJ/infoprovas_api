@@ -37,6 +37,8 @@ class Exam extends Model
         'id', 'periodo', 'arquivo', 'google_id', 'denuncias', 'subject_id', 'professor_id', 'exam_types_id'
     ];
 
+    public $timestamps = false;
+
     protected $dates = ['created_at'];
 
     public function subject()

@@ -252,6 +252,7 @@ This is the main part of the API, allowing you to list exams, see exam details a
 
 Every route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid
 programming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.
+Each ID will then be verified to have a real relationship, instead of just considering the exam id alone.
 <!-- START_e7a8e60c0317e4a59aa7fd6667d3e55e -->
 ## List exams by subject
 
@@ -292,11 +293,11 @@ fetch(url, {
         "semester": "2020.1",
         "file": "mab123\/tony_2020_1_p1.pdf",
         "google_id": "9074981498141209",
-        "reports": 0,
+        "reports": 3,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-11T21:08:37.000000Z",
+        "created_at": "2020-05-14T13:04:30.000000Z",
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -363,11 +364,11 @@ fetch(url, {
     "semester": "2020.1",
     "file": "mab123\/tony_2020_1_p1.pdf",
     "google_id": "9074981498141209",
-    "reports": 0,
+    "reports": 3,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-11T21:08:37.000000Z",
+    "created_at": "2020-05-14T13:04:30.000000Z",
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -440,6 +441,48 @@ fetch(url, {
 
 <!-- END_6a5c1f131e3de4df4bdacf08514b9046 -->
 
+<!-- START_d7f5eb125efc00b9de634d415ea26299 -->
+## Report exam PDF file by subject.
+
+This route should be used to report fake/wrong exams, spam, or any inappropriate content.
+
+The body of this POST request doesn't need any information.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost:8000/api/courses/1/subjects/1/exams/1/report" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://localhost:8000/api/courses/1/subjects/1/exams/1/report"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}/report`
+
+
+<!-- END_d7f5eb125efc00b9de634d415ea26299 -->
+
 <!-- START_7badf3a66084d41ac6663d0765d05244 -->
 ## List exams by professor
 
@@ -480,11 +523,11 @@ fetch(url, {
         "semester": "2020.1",
         "file": "mab123\/tony_2020_1_p1.pdf",
         "google_id": "9074981498141209",
-        "reports": 0,
+        "reports": 3,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-11T21:08:37.000000Z",
+        "created_at": "2020-05-14T13:04:30.000000Z",
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -579,11 +622,11 @@ fetch(url, {
     "semester": "2020.1",
     "file": "mab123\/tony_2020_1_p1.pdf",
     "google_id": "9074981498141209",
-    "reports": 0,
+    "reports": 3,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-11T21:08:37.000000Z",
+    "created_at": "2020-05-14T13:04:30.000000Z",
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -655,6 +698,48 @@ fetch(url, {
 
 
 <!-- END_e935c26f8d4e7b9681c0e505e436b898 -->
+
+<!-- START_52532e47220ac1260292ffa7aedd855a -->
+## Report exam PDF file by professor.
+
+This route should be used to report fake/wrong exams, spam, or any inappropriate content.
+
+The body of this POST request doesn't need any information.
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost:8000/api/courses/1/professor/1/exams/1/report" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"
+```
+
+```javascript
+const url = new URL(
+    "http://localhost:8000/api/courses/1/professor/1/exams/1/report"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+
+### HTTP Request
+`POST api/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/report`
+
+
+<!-- END_52532e47220ac1260292ffa7aedd855a -->
 
 #Professors
 

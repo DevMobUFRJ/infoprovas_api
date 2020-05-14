@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "cd641d16-89a1-4a3c-8086-be045199ec44",
+        "_postman_id": "38b9f2f2-deec-4a26-b073-3a4a958de23a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -133,7 +133,7 @@
         },
         {
             "name": "Exams",
-            "description": "Exams details and management.\n\nThis is the main part of the API, allowing you to list exams, see exam details and the files.\n\nEvery route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid\nprogramming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.",
+            "description": "Exams details and management.\n\nThis is the main part of the API, allowing you to list exams, see exam details and the files.\n\nEvery route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid\nprogramming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.\nEach ID will then be verified to have a real relationship, instead of just considering the exam id alone.",
             "item": [
                 {
                     "name": "List exams by subject",
@@ -220,6 +220,34 @@
                     }
                 },
                 {
+                    "name": "Report exam PDF file by subject.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/subjects\/:subject_id\/exams\/:exam_id\/report",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "This route should be used to report fake\/wrong exams, spam, or any inappropriate content.\n\nThe body of this POST request doesn't need any information.",
+                        "response": []
+                    }
+                },
+                {
                     "name": "List exams by professor",
                     "request": {
                         "url": {
@@ -300,6 +328,34 @@
                             "raw": "[]"
                         },
                         "description": "",
+                        "response": []
+                    }
+                },
+                {
+                    "name": "Report exam PDF file by professor.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id\/report",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "This route should be used to report fake\/wrong exams, spam, or any inappropriate content.\n\nThe body of this POST request doesn't need any information.",
                         "response": []
                     }
                 }
