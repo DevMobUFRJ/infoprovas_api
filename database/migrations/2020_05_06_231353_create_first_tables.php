@@ -65,7 +65,8 @@ class CreateFirstTables extends Migration
             $table->foreign('professor_id')->references('id')->on('professors');
             $table->foreign('exam_type_id')->references('id')->on('exam_types');
 
-            $table->timestamp('created_at');
+            $table->timestamps();
+            $table->softDeletes();
         });        
     }
 

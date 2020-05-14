@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Exam
@@ -33,8 +34,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Exam extends Model
 {
+    /**
+     * The soft delete allows the Exam to be removed when reported multiple times, without deleting the file
+     * or row from the database.
+     * Initially, nothing will be automatically deleted or removed, only manually.
+     */
+    use SoftDeletes;
+
     protected $fillable = [
-        'id', 'periodo', 'arquivo', 'google_id', 'denuncias', 'subject_id', 'professor_id', 'exam_types_id'
+        'id', 'periodo', 'arquivo', 'google_id', 'denuncias', 'subject_id', 'professor_id', 'exam_types_id', 'active'
     ];
 
     public $timestamps = false;
