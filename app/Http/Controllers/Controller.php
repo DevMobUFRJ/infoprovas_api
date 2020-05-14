@@ -11,6 +11,14 @@ class Controller extends BaseController
      */
     function resource_error(){
         //TODO Localization
-        return response()->json(['error' => 'Resource missing'], 404);
+        return $this->request_json_error_response('Resource missing');
+    }
+
+    /**
+     * Returns a 404 error with the error message specified.
+     * @param string $message
+     */
+    function request_json_error_response(string $message){
+        return response()->json(['error' => $message], 404);
     }
 }

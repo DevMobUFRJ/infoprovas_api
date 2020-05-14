@@ -226,6 +226,162 @@ fetch(url, {
 <p>Every route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid
 programming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.
 Each ID will then be verified to have a real relationship, instead of just considering the exam id alone.</p>
+<!-- START_c506130b7728256fbf4fdf3bcf2d6499 -->
+<h2>Add Exam to a course</h2>
+<p>Used to add new exams to the InfoProvas database.</p>
+<p>This action requires a Google Authentication. The sender application must implement a Google sign-in strategy,
+which will give the sender application a token signed by google, and an identification of the user.
+Both the token and the user ID are required and must be valid to be saved into the database.
+The token will be checked with the ID to verify the user identity.
+More info at <a href="https://developers.google.com/identity/sign-in/web/sign-in">https://developers.google.com/identity/sign-in/web/sign-in</a></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost:8000/api/courses/1/new_exam" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"semester":"2020.1","file":"recusandae","google_id":"tony.stark@gmail.com","google_token":"nihil","subject_id":1,"professor_id":1,"exam_type_id":1}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/courses/1/new_exam"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "semester": "2020.1",
+    "file": "recusandae",
+    "google_id": "tony.stark@gmail.com",
+    "google_token": "nihil",
+    "subject_id": 1,
+    "professor_id": 1,
+    "exam_type_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 4,
+    "semester": "2020.1",
+    "file": "\/path\/to\/file.pdf",
+    "reports": 0,
+    "subject_id": 1,
+    "professor_id": 1,
+    "exam_type_id": 1,
+    "created_at": "2020-05-14T15:16:31",
+    "updated_at": "2020-05-14T15:16:31",
+    "deleted_at": null,
+    "exam_type": {
+        "id": 1,
+        "name": "Prova 1",
+        "order": 1
+    },
+    "professor": {
+        "id": 1,
+        "name": "Tony Stark",
+        "course_id": 1
+    },
+    "subject": {
+        "id": 1,
+        "code": "MAB123",
+        "name": "Sistemas de Informação",
+        "semester": 1,
+        "course_id": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "error": "Resource missing"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/courses/{course_id}/new_exam</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>course_id</code></td>
+<td>required</td>
+<td>ID of the course of the new exam.</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>semester</code></td>
+<td>string</td>
+<td>required</td>
+<td>A semester string formatted like &quot;2020.1&quot; or &quot;2008.2&quot;.</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>file</td>
+<td>required</td>
+<td>The PDF file. File size limit: 8MB.</td>
+</tr>
+<tr>
+<td><code>google_id</code></td>
+<td>string</td>
+<td>required</td>
+<td>The Google email for the user submitting the exam.</td>
+</tr>
+<tr>
+<td><code>google_token</code></td>
+<td>string</td>
+<td>required</td>
+<td>The Google signed token to be verified for safety and checked against the google_id.</td>
+</tr>
+<tr>
+<td><code>subject_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID of the subject of the exam.</td>
+</tr>
+<tr>
+<td><code>professor_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID of the professor of the exam.</td>
+</tr>
+<tr>
+<td><code>exam_type_id</code></td>
+<td>integer</td>
+<td>required</td>
+<td>ID of the exam type.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c506130b7728256fbf4fdf3bcf2d6499 -->
 <!-- START_e7a8e60c0317e4a59aa7fd6667d3e55e -->
 <h2>List exams by subject</h2>
 <blockquote>
@@ -257,13 +413,13 @@ fetch(url, {
     {
         "id": 1,
         "semester": "2020.1",
-        "file": "mab123\/tony_2020_1_p1.pdf",
-        "google_id": "9074981498141209",
-        "reports": 3,
+        "reports": 0,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-14T13:04:30.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -316,13 +472,13 @@ fetch(url, {
 <pre><code class="language-json">{
     "id": 1,
     "semester": "2020.1",
-    "file": "mab123\/tony_2020_1_p1.pdf",
-    "google_id": "9074981498141209",
-    "reports": 3,
+    "reports": 0,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-14T13:04:30.000000Z",
+    "created_at": "2020-05-14T15:16:31.000000Z",
+    "updated_at": "2020-05-14T15:16:31.000000Z",
+    "deleted_at": null,
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -379,7 +535,7 @@ fetch(url, {
 <p><code>GET api/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}/file</code></p>
 <!-- END_6a5c1f131e3de4df4bdacf08514b9046 -->
 <!-- START_d7f5eb125efc00b9de634d415ea26299 -->
-<h2>Report exam PDF file by subject.</h2>
+<h2>Report exam by subject.</h2>
 <p>This route should be used to report fake/wrong exams, spam, or any inappropriate content.</p>
 <p>The body of this POST request doesn't need any information.</p>
 <blockquote>
@@ -438,13 +594,13 @@ fetch(url, {
     {
         "id": 1,
         "semester": "2020.1",
-        "file": "mab123\/tony_2020_1_p1.pdf",
-        "google_id": "9074981498141209",
-        "reports": 3,
+        "reports": 0,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-14T13:04:30.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -466,13 +622,13 @@ fetch(url, {
     {
         "id": 2,
         "semester": "2019.2",
-        "file": "mab121\/tony_2019_2_p1.pdf",
-        "google_id": "9074981498141209",
         "reports": 0,
         "subject_id": 2,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-11T21:08:37.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -525,13 +681,13 @@ fetch(url, {
 <pre><code class="language-json">{
     "id": 1,
     "semester": "2020.1",
-    "file": "mab123\/tony_2020_1_p1.pdf",
-    "google_id": "9074981498141209",
-    "reports": 3,
+    "reports": 0,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-14T13:04:30.000000Z",
+    "created_at": "2020-05-14T15:16:31.000000Z",
+    "updated_at": "2020-05-14T15:16:31.000000Z",
+    "deleted_at": null,
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -588,7 +744,7 @@ fetch(url, {
 <p><code>GET api/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/file</code></p>
 <!-- END_e935c26f8d4e7b9681c0e505e436b898 -->
 <!-- START_52532e47220ac1260292ffa7aedd855a -->
-<h2>Report exam PDF file by professor.</h2>
+<h2>Report exam by professor.</h2>
 <p>This route should be used to report fake/wrong exams, spam, or any inappropriate content.</p>
 <p>The body of this POST request doesn't need any information.</p>
 <blockquote>

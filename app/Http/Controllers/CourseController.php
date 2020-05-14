@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -14,7 +15,7 @@ class CourseController extends Controller
     /**
      * List all courses
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     function getAll(Request $request){
         return response()->json(Course::all());
@@ -23,7 +24,8 @@ class CourseController extends Controller
     /**
      * Get course information
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param $course_id
+     * @return JsonResponse
      */
     function get(Request $request, $course_id){
         $course = Course::find($course_id);

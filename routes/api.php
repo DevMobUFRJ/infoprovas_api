@@ -1,6 +1,8 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
+
+use Laravel\Lumen\Routing\Router;
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 
@@ -13,6 +15,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/courses/{course_id}/subjects/{subject_id}', 'SubjectController@get');
 
     /* Exams */
+    $router->post('/courses/{course_id}/new_exam', 'ExamController@addExam');
     //>>> by subject
     $router->get('/courses/{course_id}/subjects/{subject_id}/exams', 'ExamController@getAllBySubject');
     $router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}', 'ExamController@getBySubject');

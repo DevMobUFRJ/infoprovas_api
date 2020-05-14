@@ -253,6 +253,120 @@ This is the main part of the API, allowing you to list exams, see exam details a
 Every route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid
 programming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.
 Each ID will then be verified to have a real relationship, instead of just considering the exam id alone.
+<!-- START_c506130b7728256fbf4fdf3bcf2d6499 -->
+## Add Exam to a course
+
+Used to add new exams to the InfoProvas database.
+
+This action requires a Google Authentication. The sender application must implement a Google sign-in strategy,
+which will give the sender application a token signed by google, and an identification of the user.
+Both the token and the user ID are required and must be valid to be saved into the database.
+The token will be checked with the ID to verify the user identity.
+More info at https://developers.google.com/identity/sign-in/web/sign-in
+
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost:8000/api/courses/1/new_exam" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"semester":"2020.1","file":"recusandae","google_id":"tony.stark@gmail.com","google_token":"nihil","subject_id":1,"professor_id":1,"exam_type_id":1}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost:8000/api/courses/1/new_exam"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "semester": "2020.1",
+    "file": "recusandae",
+    "google_id": "tony.stark@gmail.com",
+    "google_token": "nihil",
+    "subject_id": 1,
+    "professor_id": 1,
+    "exam_type_id": 1
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "id": 4,
+    "semester": "2020.1",
+    "file": "\/path\/to\/file.pdf",
+    "reports": 0,
+    "subject_id": 1,
+    "professor_id": 1,
+    "exam_type_id": 1,
+    "created_at": "2020-05-14T15:16:31",
+    "updated_at": "2020-05-14T15:16:31",
+    "deleted_at": null,
+    "exam_type": {
+        "id": 1,
+        "name": "Prova 1",
+        "order": 1
+    },
+    "professor": {
+        "id": 1,
+        "name": "Tony Stark",
+        "course_id": 1
+    },
+    "subject": {
+        "id": 1,
+        "code": "MAB123",
+        "name": "Sistemas de Informação",
+        "semester": 1,
+        "course_id": 1
+    }
+}
+```
+> Example response (404):
+
+```json
+{
+    "error": "Resource missing"
+}
+```
+
+### HTTP Request
+`POST api/courses/{course_id}/new_exam`
+
+#### URL Parameters
+
+Parameter | Status | Description
+--------- | ------- | ------- | -------
+    `course_id` |  required  | ID of the course of the new exam.
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `semester` | string |  required  | A semester string formatted like "2020.1" or "2008.2".
+        `file` | file |  required  | The PDF file. File size limit: 8MB.
+        `google_id` | string |  required  | The Google email for the user submitting the exam.
+        `google_token` | string |  required  | The Google signed token to be verified for safety and checked against the google_id.
+        `subject_id` | integer |  required  | ID of the subject of the exam.
+        `professor_id` | integer |  required  | ID of the professor of the exam.
+        `exam_type_id` | integer |  required  | ID of the exam type.
+    
+<!-- END_c506130b7728256fbf4fdf3bcf2d6499 -->
+
 <!-- START_e7a8e60c0317e4a59aa7fd6667d3e55e -->
 ## List exams by subject
 
@@ -291,13 +405,13 @@ fetch(url, {
     {
         "id": 1,
         "semester": "2020.1",
-        "file": "mab123\/tony_2020_1_p1.pdf",
-        "google_id": "9074981498141209",
-        "reports": 3,
+        "reports": 0,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-14T13:04:30.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -362,13 +476,13 @@ fetch(url, {
 {
     "id": 1,
     "semester": "2020.1",
-    "file": "mab123\/tony_2020_1_p1.pdf",
-    "google_id": "9074981498141209",
-    "reports": 3,
+    "reports": 0,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-14T13:04:30.000000Z",
+    "created_at": "2020-05-14T15:16:31.000000Z",
+    "updated_at": "2020-05-14T15:16:31.000000Z",
+    "deleted_at": null,
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -442,7 +556,7 @@ fetch(url, {
 <!-- END_6a5c1f131e3de4df4bdacf08514b9046 -->
 
 <!-- START_d7f5eb125efc00b9de634d415ea26299 -->
-## Report exam PDF file by subject.
+## Report exam by subject.
 
 This route should be used to report fake/wrong exams, spam, or any inappropriate content.
 
@@ -521,13 +635,13 @@ fetch(url, {
     {
         "id": 1,
         "semester": "2020.1",
-        "file": "mab123\/tony_2020_1_p1.pdf",
-        "google_id": "9074981498141209",
-        "reports": 3,
+        "reports": 0,
         "subject_id": 1,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-14T13:04:30.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -549,13 +663,13 @@ fetch(url, {
     {
         "id": 2,
         "semester": "2019.2",
-        "file": "mab121\/tony_2019_2_p1.pdf",
-        "google_id": "9074981498141209",
         "reports": 0,
         "subject_id": 2,
         "professor_id": 1,
         "exam_type_id": 1,
-        "created_at": "2020-05-11T21:08:37.000000Z",
+        "created_at": "2020-05-14T15:16:31.000000Z",
+        "updated_at": "2020-05-14T15:16:31.000000Z",
+        "deleted_at": null,
         "exam_type": {
             "id": 1,
             "name": "Prova 1",
@@ -620,13 +734,13 @@ fetch(url, {
 {
     "id": 1,
     "semester": "2020.1",
-    "file": "mab123\/tony_2020_1_p1.pdf",
-    "google_id": "9074981498141209",
-    "reports": 3,
+    "reports": 0,
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1,
-    "created_at": "2020-05-14T13:04:30.000000Z",
+    "created_at": "2020-05-14T15:16:31.000000Z",
+    "updated_at": "2020-05-14T15:16:31.000000Z",
+    "deleted_at": null,
     "exam_type": {
         "id": 1,
         "name": "Prova 1",
@@ -700,7 +814,7 @@ fetch(url, {
 <!-- END_e935c26f8d4e7b9681c0e505e436b898 -->
 
 <!-- START_52532e47220ac1260292ffa7aedd855a -->
-## Report exam PDF file by professor.
+## Report exam by professor.
 
 This route should be used to report fake/wrong exams, spam, or any inappropriate content.
 

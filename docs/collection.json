@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "38b9f2f2-deec-4a26-b073-3a4a958de23a",
+        "_postman_id": "0e49b703-e16c-4b44-b914-95aed08e57dd",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -133,8 +133,44 @@
         },
         {
             "name": "Exams",
-            "description": "Exams details and management.\n\nThis is the main part of the API, allowing you to list exams, see exam details and the files.\n\nEvery route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid\nprogramming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.\nEach ID will then be verified to have a real relationship, instead of just considering the exam id alone.",
+            "description": "",
             "item": [
+                {
+                    "name": "Add Exam to a course\n\nUsed to add new exams to the InfoProvas database.\n\nThis action requires a Google Authentication. The sender application must implement a Google sign-in strategy,\nwhich will give the sender application a token signed by google, and an identification of the user.\nBoth the token and the user ID are required and must be valid to be saved into the database.\nThe token will be checked with the ID to verify the user identity.\nMore info at https:\/\/developers.google.com\/identity\/sign-in\/web\/sign-in",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/courses\/:course_id\/new_exam",
+                            "query": [],
+                            "variable": [
+                                {
+                                    "id": "course_id",
+                                    "key": "course_id",
+                                    "value": "1",
+                                    "description": "ID of the course of the new exam."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"recusandae\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"nihil\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
                 {
                     "name": "List exams by subject",
                     "request": {
@@ -220,7 +256,7 @@
                     }
                 },
                 {
-                    "name": "Report exam PDF file by subject.",
+                    "name": "Report exam by subject.",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -332,7 +368,7 @@
                     }
                 },
                 {
-                    "name": "Report exam PDF file by professor.",
+                    "name": "Report exam by professor.",
                     "request": {
                         "url": {
                             "protocol": "http",
