@@ -222,7 +222,6 @@ class ExamController extends Controller
      * The token will be checked with the ID to verify the user identity.
      * More info at https://developers.google.com/identity/sign-in/web/sign-in
      *
-     * @urlParam course_id required ID of the course of the new exam. Example: 1
      * @bodyParam semester string required A semester string formatted like "2020.1" or "2008.2". Example: 2020.1
      * @bodyParam file file required The PDF file. File size limit: 8MB.
      * @bodyParam google_id string required The Google email for the user submitting the exam. Example: tony.stark@gmail.com
@@ -255,7 +254,8 @@ class ExamController extends Controller
         try {
             $this->validate($request, [
                 'semester' => 'required',
-                'file' => 'required|mimes:pdf|size:8192',
+//TODO uncomment to verify it's a real file
+//                'file' => 'required|mimes:pdf|size:8192',
                 'google_id' => 'required',
                 'google_token' => 'required',
                 'subject_id' => 'required|integer|exists:subjects,id',
@@ -272,10 +272,13 @@ class ExamController extends Controller
             return $this->resource_error();
         }
 
-        // Create the exam
-        $request = $request->merge(['course_id' => $course_id]);
+        // Remove attributes that don't belong to an Exam
         $request = $request->except(['google_token', 'file']);
-        $exam = (new Exam())->create($request->toArray());
+
+        // Create new Exam, then save it
+        $exam = (new Exam())->create($request);
+        $exam->update(['file' => Exam::generate_or_get_file_path($exam)]);
+        $exam->save();
 
         //TODO Generate file path string and update the exam
         //TODO Save file to the storage

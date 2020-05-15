@@ -52,7 +52,7 @@ class Exam extends Model
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     protected $fillable = [
-        'id', 'semester', 'file', 'google_id', 'reports', 'subject_id', 'professor_id', 'exam_types_id'
+        'id', 'semester', 'file', 'google_id', 'reports', 'subject_id', 'professor_id', 'exam_type_id'
     ];
 
     /** @var string[]
@@ -74,5 +74,30 @@ class Exam extends Model
     public function exam_type()
     {
         return $this->belongsTo('App\ExamType');
+    }
+
+    /**
+     * Generate a new path where to save the file, if it's not set yet.
+     * @param $exam
+     * @return string
+     */
+    static public function generate_or_get_file_path($exam){
+        if(!empty($exam->file)) {
+            return $exam->file;
+        }
+        $file_name = Exam::generate_file_name($exam);
+        return 'app/exams/' . $exam->subject->course_id . '/' . $exam->subject->code . '/' . $file_name;
+    }
+
+    static private function generate_file_name($exam){
+        $professor_name = str_replace(" ", "", strtolower($exam->professor->name));
+        $professor_name = str_split($professor_name, 10); // Corta a string em 10 caracteres
+        if(empty($professor_name) || sizeof($professor_name) < 1){
+            $professor_name = "professor";
+        } else {
+            $professor_name = $professor_name[0];
+        }
+
+        return $exam->id . '_' . $professor_name . '_' . $exam->semester . '_' . $exam->exam_type->name . '.pdf';
     }
 }
