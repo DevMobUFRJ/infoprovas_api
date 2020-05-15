@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "0e49b703-e16c-4b44-b914-95aed08e57dd",
+        "_postman_id": "d7c26fe1-8ebf-42f3-bcc8-3fc1fae2f4c8",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -142,15 +142,7 @@
                             "protocol": "http",
                             "host": "localhost:8000",
                             "path": "api\/courses\/:course_id\/new_exam",
-                            "query": [],
-                            "variable": [
-                                {
-                                    "id": "course_id",
-                                    "key": "course_id",
-                                    "value": "1",
-                                    "description": "ID of the course of the new exam."
-                                }
-                            ]
+                            "query": []
                         },
                         "method": "POST",
                         "header": [
@@ -165,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"recusandae\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"nihil\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
+                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"quia\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"accusantium\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
                         },
                         "description": "",
                         "response": []
