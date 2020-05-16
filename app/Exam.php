@@ -102,6 +102,6 @@ class Exam extends Model
             $professor_name = $professor_name[0];
         }
 
-        return 'prova'. $exam->id . '_' . $professor_name . '_' . $exam->semester . '_'  . $exam->exam_type->name . '.pdf';
+        return 'exam'. $exam->id . '_' . $professor_name . '_' . $exam->semester . '_'  . $exam->exam_type->name . '.pdf';
     }
 }
