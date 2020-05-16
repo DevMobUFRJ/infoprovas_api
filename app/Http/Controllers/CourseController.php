@@ -28,7 +28,7 @@ class CourseController extends Controller
      * @return JsonResponse
      */
     function get(Request $request, $course_id){
-        $course = Course::find($course_id);
+        $course = Course::whereId($course_id)->first();
         if(empty($course)){
             return $this->resource_error();
         } else {

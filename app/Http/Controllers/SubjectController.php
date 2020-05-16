@@ -22,7 +22,7 @@ class SubjectController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     function getAll(Request $request, $course_id){
-        $course = Course::find($course_id);
+        $course = Course::whereId($course_id)->first();
         if(empty($course) || $course->count() == 0){
             return $this->resource_error();
         }
