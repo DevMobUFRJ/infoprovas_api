@@ -86,7 +86,11 @@ class Exam extends Model
             return $exam->file;
         }
         $file_name = Exam::generate_file_name($exam);
-        return 'app/exams/' . $exam->subject->course_id . '/' . $exam->subject->code . '/' . $file_name;
+        $file_path = 'exams/' . $exam->subject->course_id . '/' . $exam->subject->code . '/' . $file_name;
+        $file_path = strtolower($file_path);
+        $file_path = str_replace(" ", "", $file_path);
+
+        return $file_path;
     }
 
     static private function generate_file_name($exam){
@@ -98,6 +102,6 @@ class Exam extends Model
             $professor_name = $professor_name[0];
         }
 
-        return $exam->id . '_' . $professor_name . '_' . $exam->semester . '_' . $exam->exam_type->name . '.pdf';
+        return 'prova'. $exam->id . '_' . $professor_name . '_' . $exam->semester . '_'  . $exam->exam_type->name . '.pdf';
     }
 }
