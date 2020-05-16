@@ -271,7 +271,7 @@ curl -X POST \
     "http://localhost:8000/api/courses/1/new_exam" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"semester":"2020.1","file":"quia","google_id":"tony.stark@gmail.com","google_token":"accusantium","subject_id":1,"professor_id":1,"exam_type_id":1}'
+    -d '{"semester":"2020.1","file":"expedita","google_id":"tony.stark@gmail.com","google_token":"in","subject_id":1,"professor_id":1,"exam_type_id":1}'
 
 ```
 
@@ -287,9 +287,9 @@ let headers = {
 
 let body = {
     "semester": "2020.1",
-    "file": "quia",
+    "file": "expedita",
     "google_id": "tony.stark@gmail.com",
-    "google_token": "accusantium",
+    "google_token": "in",
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1
@@ -591,6 +591,202 @@ fetch(url, {
             "semester": 1,
             "course_id": 1
         }
+    },
+    {
+        "id": 13,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T19:46:26.000000Z",
+        "updated_at": "2020-05-16T19:46:26.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 14,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T19:49:02.000000Z",
+        "updated_at": "2020-05-16T19:49:02.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 15,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:03:30.000000Z",
+        "updated_at": "2020-05-16T20:03:30.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 16,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:04:33.000000Z",
+        "updated_at": "2020-05-16T20:04:33.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 17,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:06:37.000000Z",
+        "updated_at": "2020-05-16T20:06:37.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 18,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:06:56.000000Z",
+        "updated_at": "2020-05-16T20:06:56.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 19,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:10:36.000000Z",
+        "updated_at": "2020-05-16T20:10:36.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
     }
 ]
 ```
@@ -702,13 +898,10 @@ fetch(url, {
 ```
 
 
-> Example response (200):
+> Example response (500):
 
 ```json
-{
-    "TODO": "Implement PDF response ExamController@send_file_response",
-    "file": "mab123\/tony_2020_1_p1.pdf"
-}
+null
 ```
 
 ### HTTP Request
@@ -759,21 +952,21 @@ fetch(url, {
 
 <!-- END_d7f5eb125efc00b9de634d415ea26299 -->
 
-<!-- START_7badf3a66084d41ac6663d0765d05244 -->
+<!-- START_f41f190e38c56d4b942f08ee7c6b6166 -->
 ## List exams by professor
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost:8000/api/courses/1/professor/1/exams" \
+    -G "http://localhost:8000/api/courses/1/professors/1/exams" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/courses/1/professor/1/exams"
+    "http://localhost:8000/api/courses/1/professors/1/exams"
 );
 
 let headers = {
@@ -1017,31 +1210,283 @@ fetch(url, {
             "semester": 1,
             "course_id": 1
         }
+    },
+    {
+        "id": 13,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T19:46:26.000000Z",
+        "updated_at": "2020-05-16T19:46:26.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 14,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T19:49:02.000000Z",
+        "updated_at": "2020-05-16T19:49:02.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 15,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:03:30.000000Z",
+        "updated_at": "2020-05-16T20:03:30.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 16,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:04:33.000000Z",
+        "updated_at": "2020-05-16T20:04:33.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 17,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:06:37.000000Z",
+        "updated_at": "2020-05-16T20:06:37.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 18,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:06:56.000000Z",
+        "updated_at": "2020-05-16T20:06:56.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 19,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:10:36.000000Z",
+        "updated_at": "2020-05-16T20:10:36.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 20,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 2,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:11:29.000000Z",
+        "updated_at": "2020-05-16T20:11:29.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 2,
+            "code": "MAB121",
+            "name": "Organização da informação",
+            "semester": 2,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 21,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 2,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-16T20:13:21.000000Z",
+        "updated_at": "2020-05-16T20:13:21.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 2,
+            "code": "MAB121",
+            "name": "Organização da informação",
+            "semester": 2,
+            "course_id": 1
+        }
     }
 ]
 ```
 
 ### HTTP Request
-`GET api/courses/{course_id}/professor/{professor_id}/exams`
+`GET api/courses/{course_id}/professors/{professor_id}/exams`
 
 
-<!-- END_7badf3a66084d41ac6663d0765d05244 -->
+<!-- END_f41f190e38c56d4b942f08ee7c6b6166 -->
 
-<!-- START_cc5706d8adedbfa28d610280f190be84 -->
+<!-- START_e36dd74e050393c803678c2464d46a47 -->
 ## Get exam information by professor
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost:8000/api/courses/1/professor/1/exams/1" \
+    -G "http://localhost:8000/api/courses/1/professors/1/exams/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/courses/1/professor/1/exams/1"
+    "http://localhost:8000/api/courses/1/professors/1/exams/1"
 );
 
 let headers = {
@@ -1092,26 +1537,26 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/courses/{course_id}/professor/{professor_id}/exams/{exam_id}`
+`GET api/courses/{course_id}/professors/{professor_id}/exams/{exam_id}`
 
 
-<!-- END_cc5706d8adedbfa28d610280f190be84 -->
+<!-- END_e36dd74e050393c803678c2464d46a47 -->
 
-<!-- START_e935c26f8d4e7b9681c0e505e436b898 -->
+<!-- START_376dd9913b1910d7e70e4ae5718cb786 -->
 ## Get exam PDF file by professor
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost:8000/api/courses/1/professor/1/exams/1/file" \
+    -G "http://localhost:8000/api/courses/1/professors/1/exams/1/file" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/courses/1/professor/1/exams/1/file"
+    "http://localhost:8000/api/courses/1/professors/1/exams/1/file"
 );
 
 let headers = {
@@ -1128,22 +1573,19 @@ fetch(url, {
 ```
 
 
-> Example response (200):
+> Example response (500):
 
 ```json
-{
-    "TODO": "Implement PDF response ExamController@send_file_response",
-    "file": "mab123\/tony_2020_1_p1.pdf"
-}
+null
 ```
 
 ### HTTP Request
-`GET api/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/file`
+`GET api/courses/{course_id}/professors/{professor_id}/exams/{exam_id}/file`
 
 
-<!-- END_e935c26f8d4e7b9681c0e505e436b898 -->
+<!-- END_376dd9913b1910d7e70e4ae5718cb786 -->
 
-<!-- START_52532e47220ac1260292ffa7aedd855a -->
+<!-- START_5b76dd9e2b34827b11f811f137c82077 -->
 ## Report exam by professor.
 
 This route should be used to report fake/wrong exams, spam, or any inappropriate content.
@@ -1154,14 +1596,14 @@ The body of this POST request doesn't need any information.
 
 ```bash
 curl -X POST \
-    "http://localhost:8000/api/courses/1/professor/1/exams/1/report" \
+    "http://localhost:8000/api/courses/1/professors/1/exams/1/report" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost:8000/api/courses/1/professor/1/exams/1/report"
+    "http://localhost:8000/api/courses/1/professors/1/exams/1/report"
 );
 
 let headers = {
@@ -1180,10 +1622,10 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/report`
+`POST api/courses/{course_id}/professors/{professor_id}/exams/{exam_id}/report`
 
 
-<!-- END_52532e47220ac1260292ffa7aedd855a -->
+<!-- END_5b76dd9e2b34827b11f811f137c82077 -->
 
 #Professors
 

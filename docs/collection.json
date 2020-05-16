@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "d7c26fe1-8ebf-42f3-bcc8-3fc1fae2f4c8",
+        "_postman_id": "eebc5619-6bdf-4176-b91e-6ba7676cf46c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -157,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"quia\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"accusantium\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
+                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"expedita\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"in\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
                         },
                         "description": "",
                         "response": []
@@ -281,7 +281,7 @@
                         "url": {
                             "protocol": "http",
                             "host": "localhost:8000",
-                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams",
+                            "path": "api\/courses\/:course_id\/professors\/:professor_id\/exams",
                             "query": []
                         },
                         "method": "GET",
@@ -309,7 +309,7 @@
                         "url": {
                             "protocol": "http",
                             "host": "localhost:8000",
-                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id",
+                            "path": "api\/courses\/:course_id\/professors\/:professor_id\/exams\/:exam_id",
                             "query": []
                         },
                         "method": "GET",
@@ -337,7 +337,7 @@
                         "url": {
                             "protocol": "http",
                             "host": "localhost:8000",
-                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id\/file",
+                            "path": "api\/courses\/:course_id\/professors\/:professor_id\/exams\/:exam_id\/file",
                             "query": []
                         },
                         "method": "GET",
@@ -365,7 +365,7 @@
                         "url": {
                             "protocol": "http",
                             "host": "localhost:8000",
-                            "path": "api\/courses\/:course_id\/professor\/:professor_id\/exams\/:exam_id\/report",
+                            "path": "api\/courses\/:course_id\/professors\/:professor_id\/exams\/:exam_id\/report",
                             "query": []
                         },
                         "method": "POST",
