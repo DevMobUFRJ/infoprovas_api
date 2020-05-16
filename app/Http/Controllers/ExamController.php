@@ -17,6 +17,10 @@ use App\Course;
 use App\Exam;
 use App\Professor;
 use App\Subject;
+use Exception;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -185,32 +189,6 @@ class ExamController extends Controller
     }
 
     /**
-     * Increment the reports on a given exam
-     * @param $exam_id
-     * @return Exam|Model|mixed|object|null Updated exam object
-     */
-    private function increment_report($exam_id){
-        $exam = Exam::find($exam_id)->first();
-        $exam->reports = $exam->reports + 1;
-        $exam->save();
-        return $exam;
-    }
-
-    /**
-     * Default response with a PDF file to show the user.
-     * @param String $file_path File path of the PDF file
-     * @return JsonResponse Response to be returned to the user. Can be the file, or a JSON error.
-     */
-    private function send_file_response($file_path){
-        //TODO Read file from storage    and show to the user.
-        return response()->json([
-            "TODO" => "Implement PDF response ExamController@send_file_response",
-            "file" => $file_path
-        ]);
-    }
-
-
-    /**
      * @group Exams
      * Add Exam to a course
      *
@@ -254,8 +232,7 @@ class ExamController extends Controller
         try {
             $this->validate($request, [
                 'semester' => 'required',
-//TODO uncomment to verify it's a real file
-//                'file' => 'required|mimes:pdf|size:8192',
+                'file' => 'required|mimes:pdf|size:8192',
                 'google_id' => 'required',
                 'google_token' => 'required',
                 'subject_id' => 'required|integer|exists:subjects,id',
@@ -263,7 +240,7 @@ class ExamController extends Controller
                 'exam_type_id' => 'required|integer|exists:exam_types,id',
             ]);
         } catch (ValidationException $e){
-            return $this->request_json_error_response('Invalid exam parameters');
+            return $this->request_json_error_response('Invalid exam parameters. ' . $e->getMessage());
         }
 
         // Validate Course Id
@@ -273,17 +250,56 @@ class ExamController extends Controller
         }
 
         // Remove attributes that don't belong to an Exam
-        $request = $request->except(['google_token', 'file']);
+        $params = $request->except(['google_token', 'file']);
 
         // Create new Exam, then save it
-        $exam = (new Exam())->create($request);
+        $exam = (new Exam())->create($params);
         $exam->update(['file' => Exam::generate_or_get_file_path($exam)]);
         $exam->save();
 
-        //TODO Generate file path string and update the exam
-        //TODO Save file to the storage
+        // Save file to storage
+        $saved = $this->store_file($exam->file, $request->get('file'));
+        if(!$saved){
+            Log::error("Unable to save file to storage for exam " . $exam->id);
+            try{
+                $exam->delete();
+            } catch (Exception $e) {
+                Log::error("Unable to delete exam after error saving file to storage. " . $exam->toJson());
+            }
+            return $this->request_json_error_response("Unable to save file to storage");
+        }
 
         return response()->json($exam);
+    }
+
+    /**
+     * Increment the reports on a given exam
+     * @param $exam_id
+     * @return Exam|Model|mixed|object|null Updated exam object
+     */
+    private function increment_report($exam_id){
+        $exam = Exam::whereId($exam_id)->first();
+        $exam->reports = $exam->reports + 1;
+        $exam->save();
+        return $exam;
+    }
+
+    /**
+     * Default response with a PDF file to show the user.
+     * @param String $file_path File path of the PDF file
+     * @return \Illuminate\Http\Response
+     */
+    private function send_file_response(string $file_path){
+        //TODO Keep an eye on this way of returning the file for download.
+        //The 'app/' on the beggining is to fix the way it handles file stores and retrievals.
+        $file = File::get(storage_path('app/' . $file_path));
+        $response = response()->make($file, 200);
+        $response = $response->header('Content-Type', 'application/pdf');
+        return $response;
+    }
+
+    private function store_file($file_path, $contents){
+        return Storage::put($file_path, $contents);
     }
 
     /**
