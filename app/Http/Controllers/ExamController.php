@@ -42,7 +42,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exams = Subject::find($subject_id)->exams()->with(['exam_type', 'professor', 'subject'])->get();
+        $exams = Subject::whereId($subject_id)->first()->exams()->with(['exam_type', 'professor', 'subject'])->get();
         return response()->json($exams);
     }
 
@@ -61,7 +61,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exam = Exam::find($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
+        $exam = Exam::whereId($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
         return response()->json($exam);
     }
 
@@ -80,7 +80,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exam = Exam::find($exam_id)->first();
+        $exam = Exam::whereId($exam_id)->first();
         return $this->send_file_response($exam->file);
     }
 
@@ -122,7 +122,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exams = Professor::find($professor_id)->exams()->with(['exam_type', 'professor', 'subject'])->get();
+        $exams = Professor::whereId($professor_id)->first()->exams()->with(['exam_type', 'professor', 'subject'])->get();
         return response()->json($exams);
     }
 
@@ -141,7 +141,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exam = Exam::find($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
+        $exam = Exam::whereId($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
         return response()->json($exam);
     }
 
@@ -160,7 +160,7 @@ class ExamController extends Controller
             return $ids_validation;
         }
 
-        $exam = Exam::find($exam_id)->first();
+        $exam = Exam::whereId($exam_id)->first();
         return $this->send_file_response($exam->file);
     }
 
@@ -244,7 +244,7 @@ class ExamController extends Controller
         }
 
         // Validate Course Id
-        $course = Course::find($course_id);
+        $course = Course::whereId($course_id);
         if(empty($course)){
             return $this->resource_error();
         }
