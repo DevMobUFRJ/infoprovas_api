@@ -22,10 +22,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}/file', 'ExamController@getPDFBySubject');
     $router->post('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}/report', 'ExamController@reportBySubject');
     //>>> by professor
-    $router->get('/courses/{course_id}/professor/{professor_id}/exams', 'ExamController@getAllByProfessor');
-    $router->get('/courses/{course_id}/professor/{professor_id}/exams/{exam_id}', 'ExamController@getByProfessor');
-    $router->get('/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/file', 'ExamController@getPDFByProfessor');
-    $router->post('/courses/{course_id}/professor/{professor_id}/exams/{exam_id}/report', 'ExamController@reportByProfessor');
+    $router->get('/courses/{course_id}/professors/{professor_id}/exams', 'ExamController@getAllByProfessor');
+    $router->get('/courses/{course_id}/professors/{professor_id}/exams/{exam_id}', 'ExamController@getByProfessor');
+    $router->get('/courses/{course_id}/professors/{professor_id}/exams/{exam_id}/file', 'ExamController@getPDFByProfessor');
+    $router->post('/courses/{course_id}/professors/{professor_id}/exams/{exam_id}/report', 'ExamController@reportByProfessor');
     // The route below apparently requires additional nginx/apache setup to be correctly loaded.
     //$router->get('/courses/{course_id}/subjects/{subject_id}/exams/{exam_id}.pdf', 'ExamController@getPDF');
 
