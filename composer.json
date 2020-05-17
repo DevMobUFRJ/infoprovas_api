@@ -41,10 +41,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-install-cmd": [
-            "php artisan migrate --force",
-            "php artisan ide-helper:models -W -R",
-            "php artisan ide-helper:meta",
-            "php artisan api:generate"
+            "php artisan migrate --force"
         ]
     }
 }
