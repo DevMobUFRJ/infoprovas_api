@@ -21,6 +21,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -232,7 +233,7 @@ class ExamController extends Controller
         try {
             $this->validate($request, [
                 'semester' => 'required',
-                'file' => 'required|mimes:pdf|size:8192',
+                'file' => 'required|mimes:pdf|max:8192',
                 'google_id' => 'required',
                 'google_token' => 'required',
                 'subject_id' => 'required|integer|exists:subjects,id',
@@ -261,9 +262,9 @@ class ExamController extends Controller
         $exam->update(['file' => Exam::generate_or_get_file_path($exam)]);
         $exam->save();
 
-        // Save file to storage
-        $saved = $this->store_file($exam->file, $request->get('file'));
-        if(!$saved){
+        $saved = $this->store_file($exam->file, $request->file('file'));
+
+        if(!empty($saved_file)){
             Log::error("Unable to save file to storage for exam " . $exam->id);
             try{
                 $exam->delete();
@@ -302,8 +303,12 @@ class ExamController extends Controller
         return $response;
     }
 
-    private function store_file($file_path, $contents){
-        return Storage::put($file_path, $contents);
+    private function store_file($file_path, UploadedFile $exam_file){
+        $file_name = preg_split("/\//", $file_path); // Match: /
+        $file_name = $file_name[sizeof($file_name)-1];
+        $file_path = str_replace('/' . $file_name, '', $file_path);
+
+        return $exam_file->storeAs($file_path, $file_name) != false;
     }
 
     /**
