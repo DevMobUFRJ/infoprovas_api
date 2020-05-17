@@ -21,6 +21,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -292,12 +293,19 @@ class ExamController extends Controller
     /**
      * Default response with a PDF file to show the user.
      * @param String $file_path File path of the PDF file
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse|Response
      */
     private function send_file_response(string $file_path){
         //TODO Keep an eye on this way of returning the file for download.
         //The 'app/' on the beggining is to fix the way it handles file stores and retrievals.
-        $file = File::get(storage_path('app/' . $file_path));
+        $full_file_path = storage_path('app/' . $file_path);
+
+        if(!File::exists($full_file_path)){
+            Log::error("File not found at storage: " . $full_file_path);
+            return $this->request_json_error_response('File not found. Please report the error to the admins');
+        }
+
+        $file = File::get($full_file_path);
         $response = response()->make($file, 200);
         $response = $response->header('Content-Type', 'application/pdf');
         return $response;
