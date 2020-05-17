@@ -240,7 +240,11 @@ class ExamController extends Controller
                 'exam_type_id' => 'required|integer|exists:exam_types,id',
             ]);
         } catch (ValidationException $e){
-            return $this->request_json_error_response('Invalid exam parameters. ' . $e->getMessage());
+            $full_message = "";
+            foreach($e->errors() as $error){
+                $full_message = $full_message . $error[0] . ' ';
+            }
+            return $this->request_json_error_response($full_message);
         }
 
         // Validate Course Id
