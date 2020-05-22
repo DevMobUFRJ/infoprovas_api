@@ -2,11 +2,45 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "eebc5619-6bdf-4176-b91e-6ba7676cf46c",
+        "_postman_id": "379e1506-4d3a-469f-8777-151db7853c6d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Contacts",
+            "description": "Submit a message to the server management team.",
+            "item": [
+                {
+                    "name": "api\/contact",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost:8000",
+                            "path": "api\/contact",
+                            "query": []
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"ea\",\n    \"email\": \"dicta\",\n    \"subject\": \"distinctio\",\n    \"message\": \"atque\"\n}"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                }
+            ]
+        },
         {
             "name": "Courses",
             "description": "Course details and management",
@@ -133,10 +167,10 @@
         },
         {
             "name": "Exams",
-            "description": "",
+            "description": "Exams details and management.\n\nThis is the main part of the API, allowing you to list exams, see exam details and the files.\n\nEvery route comes filtered either by a subject or a professors, using composite full URLs. This is done to avoid\nprogramming mistakes, requiring you to provide the course, exam, and subject or professor id in the same URL.\nEach ID will then be verified to have a real relationship, instead of just considering the exam id alone.",
             "item": [
                 {
-                    "name": "Add Exam to a course\n\nUsed to add new exams to the InfoProvas database.\n\nThis action requires a Google Authentication. The sender application must implement a Google sign-in strategy,\nwhich will give the sender application a token signed by google, and an identification of the user.\nBoth the token and the user ID are required and must be valid to be saved into the database.\nThe token will be checked with the ID to verify the user identity.\nMore info at https:\/\/developers.google.com\/identity\/sign-in\/web\/sign-in",
+                    "name": "Add Exam to a course",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -157,9 +191,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"expedita\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"in\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
+                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"asperiores\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"non\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
                         },
-                        "description": "",
+                        "description": "Used to add new exams to the InfoProvas database.\n\nThis action requires a Google Authentication. The sender application must implement a Google sign-in strategy,\nwhich will give the sender application a token signed by google, and an identification of the user.\nBoth the token and the user ID are required and must be valid to be saved into the database.\nThe token will be checked with the ID to verify the user identity.\nMore info at https:\/\/developers.google.com\/identity\/sign-in\/web\/sign-in",
                         "response": []
                     }
                 },

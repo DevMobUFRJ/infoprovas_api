@@ -37,5 +37,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/courses/{course_id}/professors', 'ProfessorController@getAll');
     $router->get('/courses/{course_id}/professors/{professor_id}', 'ProfessorController@get');
 
+    /* Contacts */
+    $router->post('/contact', 'ContactController@submitContact');
+
 });
 

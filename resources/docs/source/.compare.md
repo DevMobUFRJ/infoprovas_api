@@ -20,6 +20,70 @@ Welcome to the generated API reference.
 
 <!-- END_INFO -->
 
+#Contacts
+
+Submit a message to the server management team.
+<!-- START_30a7ad44c4383c85c240df8f76cd8c54 -->
+## api/contact
+> Example request:
+
+```bash
+curl -X POST \
+    "http://localhost:8000/api/contact" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"ea","email":"dicta","subject":"distinctio","message":"atque"}'
+
+```
+
+```javascript
+const url = new URL(
+    "http://localhost:8000/api/contact"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "ea",
+    "email": "dicta",
+    "subject": "distinctio",
+    "message": "atque"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response => response.json())
+    .then(json => console.log(json));
+```
+
+
+> Example response (200):
+
+```json
+{
+    "success": "Message submitted"
+}
+```
+
+### HTTP Request
+`POST api/contact`
+
+#### Body Parameters
+Parameter | Type | Status | Description
+--------- | ------- | ------- | ------- | -----------
+    `name` | string |  required  | Name of the sender. Max length: 255.
+        `email` | string |  required  | Email of the sender. Max length: 255.
+        `subject` | string |  required  | Subject of the message. Max length: 255.
+        `message` | string |  required  | The message for the team. Max length: 2000.
+    
+<!-- END_30a7ad44c4383c85c240df8f76cd8c54 -->
+
 #Courses
 
 Course details and management
@@ -271,7 +335,7 @@ curl -X POST \
     "http://localhost:8000/api/courses/1/new_exam" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"semester":"2020.1","file":"expedita","google_id":"tony.stark@gmail.com","google_token":"in","subject_id":1,"professor_id":1,"exam_type_id":1}'
+    -d '{"semester":"2020.1","file":"asperiores","google_id":"tony.stark@gmail.com","google_token":"non","subject_id":1,"professor_id":1,"exam_type_id":1}'
 
 ```
 
@@ -287,9 +351,9 @@ let headers = {
 
 let body = {
     "semester": "2020.1",
-    "file": "expedita",
+    "file": "asperiores",
     "google_id": "tony.stark@gmail.com",
-    "google_token": "in",
+    "google_token": "non",
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1
@@ -787,6 +851,510 @@ fetch(url, {
             "semester": 1,
             "course_id": 1
         }
+    },
+    {
+        "id": 23,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:04:49.000000Z",
+        "updated_at": "2020-05-17T22:04:49.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 24,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:18:05.000000Z",
+        "updated_at": "2020-05-17T22:18:05.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 25,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:03.000000Z",
+        "updated_at": "2020-05-17T22:22:03.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 26,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:25.000000Z",
+        "updated_at": "2020-05-17T22:22:25.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 27,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:39.000000Z",
+        "updated_at": "2020-05-17T22:22:39.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 28,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:24:34.000000Z",
+        "updated_at": "2020-05-17T22:24:34.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 29,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:26:37.000000Z",
+        "updated_at": "2020-05-17T22:26:37.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 30,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:27:29.000000Z",
+        "updated_at": "2020-05-17T22:27:29.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 31,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:29:42.000000Z",
+        "updated_at": "2020-05-17T22:29:42.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 32,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:21.000000Z",
+        "updated_at": "2020-05-17T22:32:21.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 33,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:49.000000Z",
+        "updated_at": "2020-05-17T22:32:49.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 34,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:56.000000Z",
+        "updated_at": "2020-05-17T22:32:56.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 35,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:33:05.000000Z",
+        "updated_at": "2020-05-17T22:33:05.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 36,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:33:16.000000Z",
+        "updated_at": "2020-05-17T22:33:16.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 37,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:34:00.000000Z",
+        "updated_at": "2020-05-17T22:34:00.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 38,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:34:16.000000Z",
+        "updated_at": "2020-05-17T22:34:16.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 39,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:37:22.000000Z",
+        "updated_at": "2020-05-17T22:37:22.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 40,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:37:55.000000Z",
+        "updated_at": "2020-05-17T22:37:55.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
     }
 ]
 ```
@@ -898,10 +1466,12 @@ fetch(url, {
 ```
 
 
-> Example response (500):
+> Example response (404):
 
 ```json
-null
+{
+    "error": "File not found. Please report the error to the admins"
+}
 ```
 
 ### HTTP Request
@@ -1462,6 +2032,510 @@ fetch(url, {
             "semester": 2,
             "course_id": 1
         }
+    },
+    {
+        "id": 23,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:04:49.000000Z",
+        "updated_at": "2020-05-17T22:04:49.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 24,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:18:05.000000Z",
+        "updated_at": "2020-05-17T22:18:05.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 25,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:03.000000Z",
+        "updated_at": "2020-05-17T22:22:03.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 26,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:25.000000Z",
+        "updated_at": "2020-05-17T22:22:25.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 27,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:22:39.000000Z",
+        "updated_at": "2020-05-17T22:22:39.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 28,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:24:34.000000Z",
+        "updated_at": "2020-05-17T22:24:34.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 29,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:26:37.000000Z",
+        "updated_at": "2020-05-17T22:26:37.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 30,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:27:29.000000Z",
+        "updated_at": "2020-05-17T22:27:29.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 31,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:29:42.000000Z",
+        "updated_at": "2020-05-17T22:29:42.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 32,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:21.000000Z",
+        "updated_at": "2020-05-17T22:32:21.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 33,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:49.000000Z",
+        "updated_at": "2020-05-17T22:32:49.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 34,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:32:56.000000Z",
+        "updated_at": "2020-05-17T22:32:56.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 35,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:33:05.000000Z",
+        "updated_at": "2020-05-17T22:33:05.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 36,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:33:16.000000Z",
+        "updated_at": "2020-05-17T22:33:16.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 37,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:34:00.000000Z",
+        "updated_at": "2020-05-17T22:34:00.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 38,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:34:16.000000Z",
+        "updated_at": "2020-05-17T22:34:16.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 39,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:37:22.000000Z",
+        "updated_at": "2020-05-17T22:37:22.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
+    },
+    {
+        "id": 40,
+        "semester": "2020.1",
+        "reports": 0,
+        "subject_id": 1,
+        "professor_id": 1,
+        "exam_type_id": 1,
+        "created_at": "2020-05-17T22:37:55.000000Z",
+        "updated_at": "2020-05-17T22:37:55.000000Z",
+        "deleted_at": null,
+        "exam_type": {
+            "id": 1,
+            "name": "Prova 1",
+            "order": 1
+        },
+        "professor": {
+            "id": 1,
+            "name": "Tony Stark",
+            "course_id": 1
+        },
+        "subject": {
+            "id": 1,
+            "code": "MAB123",
+            "name": "Sistemas de Informação",
+            "semester": 1,
+            "course_id": 1
+        }
     }
 ]
 ```
@@ -1573,10 +2647,12 @@ fetch(url, {
 ```
 
 
-> Example response (500):
+> Example response (404):
 
 ```json
-null
+{
+    "error": "File not found. Please report the error to the admins"
+}
 ```
 
 ### HTTP Request

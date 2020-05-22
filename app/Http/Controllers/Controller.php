@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -22,5 +23,19 @@ class Controller extends BaseController
      */
     function request_json_error_response(string $message){
         return response()->json(['error' => $message], 404);
+    }
+
+    /**
+     * Default exception handler for validation errors. Returns a json response to be sent to the user containing
+     * all errors in the validation.
+     * @param ValidationException $e
+     * @return JsonResponse
+     */
+    function validation_error(ValidationException $e){
+        $full_message = "";
+        foreach($e->errors() as $error){
+            $full_message = $full_message . $error[0] . ' ';
+        }
+        return $this->request_json_error_response($full_message);
     }
 }

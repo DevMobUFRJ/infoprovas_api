@@ -191,7 +191,6 @@ class ExamController extends Controller
     }
 
     /**
-     * @group Exams
      * Add Exam to a course
      *
      * Used to add new exams to the InfoProvas database.
@@ -242,11 +241,7 @@ class ExamController extends Controller
                 'exam_type_id' => 'required|integer|exists:exam_types,id',
             ]);
         } catch (ValidationException $e){
-            $full_message = "";
-            foreach($e->errors() as $error){
-                $full_message = $full_message . $error[0] . ' ';
-            }
-            return $this->request_json_error_response($full_message);
+            return $this->validation_error($e);
         }
 
         // Validate Course Id
