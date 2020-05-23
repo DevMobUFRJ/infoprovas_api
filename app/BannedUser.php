@@ -20,6 +20,8 @@ class BannedUser extends Model
 {
     protected $table = 'banned_users';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id', 'google_id',
     ];

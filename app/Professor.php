@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Professor extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'id', 'name', 'course_id'
     ];
