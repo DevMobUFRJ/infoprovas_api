@@ -77,14 +77,13 @@ class Exam extends Model
     }
 
     /**
-     * Generate a new path where to save the file, if it's not set yet.
+     * Generate a new path where to save the file.
+     * The path DOES NOT start with storage/ or app/, sometimes you may need to add it after calling this method.
+     * The full path is: exams/{course_id}/{subject_code}/{prof_name}_id{exam_id}_{semester}_[exam_type}.pdf
      * @param $exam
      * @return string
      */
-    static public function generate_or_get_file_path($exam){
-        if(!empty($exam->file)) {
-            return $exam->file;
-        }
+    static public function generate_file_path($exam){
         $file_name = Exam::generate_file_name($exam);
         $file_path = 'exams/' . $exam->subject->course_id . '/' . $exam->subject->code . '/' . $file_name;
         $file_path = strtolower($file_path);
@@ -102,6 +101,6 @@ class Exam extends Model
             $professor_name = $professor_name[0];
         }
 
-        return 'exam'. $exam->id . '_' . $professor_name . '_' . $exam->semester . '_'  . $exam->exam_type->name . '.pdf';
+        return $professor_name . '_' . 'id'. $exam->id . '_' . $exam->semester . '_'  . $exam->exam_type->name . '.pdf';
     }
 }

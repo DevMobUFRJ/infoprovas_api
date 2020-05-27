@@ -255,7 +255,7 @@ class ExamController extends Controller
 
         // Create new Exam, then save it
         $exam = (new Exam())->create($params);
-        $exam->update(['file' => Exam::generate_or_get_file_path($exam)]);
+        $exam->update(['file' => Exam::generate_file_path($exam)]);
         $exam->save();
 
         $saved = $this->store_file($exam->file, $request->file('file'));
