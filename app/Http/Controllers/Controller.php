@@ -25,6 +25,10 @@ class Controller extends BaseController
         return response()->json(['error' => $message], 404);
     }
 
+    function request_json_error_personalized(string $message, $http_code){
+        return response()->json(['error' => $message], $http_code);
+    }
+
     /**
      * Default exception handler for validation errors. Returns a json response to be sent to the user containing
      * all errors in the validation.
