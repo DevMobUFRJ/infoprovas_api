@@ -204,7 +204,7 @@ class ExamController extends Controller
      * @bodyParam semester string required A semester string formatted like "2020.1" or "2008.2". Example: 2020.1
      * @bodyParam file file required The PDF file. File size limit: 8MB.
      * @bodyParam google_id string required The Google email for the user submitting the exam. Example: tony.stark@gmail.com
-     * @bodyParam google_token string required The Google signed token to be verified for safety and checked against the google_id.
+     * @bodyParam google_token string required The id_token of the google authentication, signed, to be verified for safety and checked with the google_id.
      * @bodyParam subject_id int required ID of the subject of the exam. Example: 1
      * @bodyParam professor_id int required ID of the professor of the exam. Example: 1
      * @bodyParam exam_type_id int required ID of the exam type. Example: 1
