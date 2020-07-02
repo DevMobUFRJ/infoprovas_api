@@ -15,6 +15,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Exam;
+use App\Http\GoogleSigninHelper;
 use App\Professor;
 use App\Subject;
 use Exception;
@@ -242,6 +243,12 @@ class ExamController extends Controller
             ]);
         } catch (ValidationException $e){
             return $this->validation_error($e);
+        }
+
+        // Validate Google id
+        if(!GoogleSigninHelper::verify_token($request['google_token'], $request['google_id'])){
+            // Google id or token invalid
+            return $this->request_json_error_response("Unable to verify token and id");
         }
 
         // Validate Course Id
