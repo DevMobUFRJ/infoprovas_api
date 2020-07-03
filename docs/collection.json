@@ -2,7 +2,7 @@
     "variables": [],
     "info": {
         "name": "Infoprovas API",
-        "_postman_id": "379e1506-4d3a-469f-8777-151db7853c6d",
+        "_postman_id": "718ace87-a01a-432a-91e7-d77d98e532aa",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -12,7 +12,7 @@
             "description": "Submit a message to the server management team.",
             "item": [
                 {
-                    "name": "api\/contact",
+                    "name": "Route to receive contact messages to the platform.",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -33,9 +33,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"name\": \"ea\",\n    \"email\": \"dicta\",\n    \"subject\": \"distinctio\",\n    \"message\": \"atque\"\n}"
+                            "raw": "{\n    \"name\": \"doloremque\",\n    \"email\": \"dolorum\",\n    \"subject\": \"suscipit\",\n    \"message\": \"error\",\n    \"g-recaptcha-response\": \"voluptas\"\n}"
                         },
-                        "description": "",
+                        "description": "The form must also implement the ReCaptcha v2 using the correct client token for the site.\n\nIn the future, this method may relay the message to an email address as well.",
                         "response": []
                     }
                 }
@@ -191,7 +191,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"asperiores\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"non\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
+                            "raw": "{\n    \"semester\": \"2020.1\",\n    \"file\": \"et\",\n    \"google_id\": \"tony.stark@gmail.com\",\n    \"google_token\": \"officiis\",\n    \"subject_id\": 1,\n    \"professor_id\": 1,\n    \"exam_type_id\": 1\n}"
                         },
                         "description": "Used to add new exams to the InfoProvas database.\n\nThis action requires a Google Authentication. The sender application must implement a Google sign-in strategy,\nwhich will give the sender application a token signed by google, and an identification of the user.\nBoth the token and the user ID are required and must be valid to be saved into the database.\nThe token will be checked with the ID to verify the user identity.\nMore info at https:\/\/developers.google.com\/identity\/sign-in\/web\/sign-in",
                         "response": []
