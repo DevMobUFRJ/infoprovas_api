@@ -1,6 +1,7 @@
 <?php
 namespace App\Http;
 
+use Exception;
 use Google_Client;
 
 class GoogleSigninHelper {
@@ -9,6 +10,8 @@ class GoogleSigninHelper {
      * @param String $google_token
      * @param String $google_id The google_id
      * @return bool true if the token and id are valid, false if something can't be verified with google.
+     * @throws Exception $code = ERROR_VERIFYING_GOOGLE_TOKEN, if there's an error with the validation request
+     * @throws Exception $code = INVALID_GOOGLE_SIGNIN_TOKEN, if the token is invalid and rejected by google.
      */
     public static function verify_token(String $google_token, String $google_id){
         // Google id used on the front-end for authentication
@@ -17,17 +20,15 @@ class GoogleSigninHelper {
 
         try {
             $payload = $client->verifyIdToken($google_token);
-            if ($payload) {
-                // If request specified a G Suite domain:
-                //$domain = $payload['hd'];
-                $user_email = $payload['email'];
-                return strcmp($user_email, $google_id) == 0;
-            } else {
-                return false;
-            }
-        } catch (\Exception $e) {
-            return false;
+        } catch (Exception $e) {
+            throw new Exception("Erro ao verificar token de login", ErrorCodes::ERROR_VERIFYING_GOOGLE_TOKEN);
+        }
+
+        if ($payload) {
+            $user_email = $payload['email'];
+            return strcmp($user_email, $google_id) == 0;
+        } else {
+            throw new Exception("Token de login inválido", ErrorCodes::INVALID_GOOGLE_SIGNIN_TOKEN);
         }
     }
-
 }

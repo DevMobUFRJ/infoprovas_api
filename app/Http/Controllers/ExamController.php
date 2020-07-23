@@ -15,6 +15,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Exam;
+use App\Http\ErrorCodes;
 use App\Http\GoogleSigninHelper;
 use App\Professor;
 use App\Subject;
@@ -26,7 +27,6 @@ use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class ExamController extends Controller
@@ -37,14 +37,11 @@ class ExamController extends Controller
      * @param $course_id int
      * @param $subject_id int
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function getAllBySubject(Request $request, $course_id, $subject_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, null);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, $subject_id, null, null);
         $exams = Subject::whereId($subject_id)->first()->exams()->with(['exam_type', 'professor', 'subject'])->get();
         return response()->json($exams);
     }
@@ -56,14 +53,11 @@ class ExamController extends Controller
      * @param $subject_id
      * @param $exam_id
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function getBySubject(Request $request, $course_id, $subject_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
         $exam = Exam::whereId($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
         return response()->json($exam);
     }
@@ -75,14 +69,12 @@ class ExamController extends Controller
      * @param $subject_id
      * @param $exam_id
      * @return JsonResponse PDF file if it exists. Error otherwise.
+     * @throws Exception INVALID_IDENTIFIER
+     * @throws Exception FILE_NOT_FOUND
      */
     function getPDFBySubject(Request $request, $course_id, $subject_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
         $exam = Exam::whereId($exam_id)->first();
         return $this->send_file_response($exam->file);
     }
@@ -95,19 +87,15 @@ class ExamController extends Controller
      * The body of this POST request doesn't need any information.
      * @param Request $request
      * @param $course_id
-     * @param $professor_id
+     * @param $subject_id
      * @param $exam_id
      * @return JsonResponse The updated exam. Error otherwise.
+     * @throws Exception INVALID_IDENTIFIER
      */
     function reportBySubject(Request $request, $course_id, $subject_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, $subject_id, null, $exam_id);
         $exam = $this->increment_report($exam_id);
-
         return response()->json($exam);
     }
 
@@ -117,14 +105,11 @@ class ExamController extends Controller
      * @param $course_id
      * @param $professor_id
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function getAllByProfessor(Request $request, $course_id, $professor_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, null);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, null, $professor_id, null);
         $exams = Professor::whereId($professor_id)->first()->exams()->with(['exam_type', 'professor', 'subject'])->get();
         return response()->json($exams);
     }
@@ -136,14 +121,11 @@ class ExamController extends Controller
      * @param $professor_id
      * @param $exam_id
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function getByProfessor(Request $request, $course_id, $professor_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
         $exam = Exam::whereId($exam_id)->with(['exam_type', 'professor', 'subject'])->first();
         return response()->json($exam);
     }
@@ -155,14 +137,12 @@ class ExamController extends Controller
      * @param $professor_id
      * @param $exam_id
      * @return JsonResponse PDF file if it exists. Error otherwise.
+     * @throws Exception INVALID_IDENTIFIER
+     * @throws Exception FILE_NOT_FOUND
      */
     function getPDFByProfessor(Request $request, $course_id, $professor_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
         $exam = Exam::whereId($exam_id)->first();
         return $this->send_file_response($exam->file);
     }
@@ -178,14 +158,11 @@ class ExamController extends Controller
      * @param $professor_id
      * @param $exam_id
      * @return JsonResponse The updated exam. Error otherwise.
+     * @throws Exception INVALID_IDENTIFIER
      */
     function reportByProfessor(Request $request, $course_id, $professor_id, $exam_id)
     {
-        $ids_validation = $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
-        if(!is_null($ids_validation)){
-            return $ids_validation;
-        }
-
+        $this->validate_input_ids($course_id, null, $professor_id, $exam_id);
         $exam = $this->increment_report($exam_id);
 
         return response()->json($exam);
@@ -229,6 +206,9 @@ class ExamController extends Controller
      * @param Request $request
      * @param $course_id
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER, if any ID is not found on the database.
+     * @throws Exception ERROR_VERIFYING_GOOGLE_TOKEN, if the app can't verify the google token
+     * @throws Exception ERROR_SAVING_TO_FILE_STORAGE, if the exam file could not be stored correctly.
      */
     function addExam(Request $request, $course_id){
         try {
@@ -242,19 +222,19 @@ class ExamController extends Controller
                 'exam_type_id' => 'required|integer|exists:exam_types,id',
             ]);
         } catch (ValidationException $e){
-            return $this->validation_error($e);
+            throw new Exception($this->validation_error_str($e), ErrorCodes::ERROR_VALIDATING_FORM);
         }
 
         // Validate Google id
         if(!GoogleSigninHelper::verify_token($request['google_token'], $request['google_id'])){
             // Google id or token invalid
-            return $this->request_json_error_response("Unable to verify token and id");
+            throw new Exception("Erro ao verificar token de login", ErrorCodes::ERROR_VERIFYING_GOOGLE_TOKEN);
         }
 
         // Validate Course Id
         $course = Course::whereId($course_id);
         if(empty($course)){
-            return $this->resource_error();
+            throw new Exception("ID de curso inválido", ErrorCodes::INVALID_IDENTIFIER);
         }
 
         // Remove attributes that don't belong to an Exam
@@ -274,7 +254,7 @@ class ExamController extends Controller
             } catch (Exception $e) {
                 Log::error("Unable to delete exam after error saving file to storage. " . $exam->toJson());
             }
-            return $this->request_json_error_response("Unable to save file to storage");
+            throw new Exception("Erro ao salvar arquivo no armazenamento. Tente novamente mais tarde.", ErrorCodes::ERROR_SAVING_TO_FILE_STORAGE);
         }
 
         return response()->json($exam);
@@ -296,6 +276,7 @@ class ExamController extends Controller
      * Default response with a PDF file to show the user.
      * @param String $file_path File path of the PDF file
      * @return JsonResponse|Response
+     * @throws Exception FILE_NOT_FOUND
      */
     private function send_file_response(string $file_path){
         //TODO Keep an eye on this way of returning the file for download.
@@ -304,7 +285,7 @@ class ExamController extends Controller
 
         if(!File::exists($full_file_path)){
             Log::error("File not found at storage: " . $full_file_path);
-            return $this->request_json_error_response('File not found. Please report the error to the admins');
+            throw new Exception("Arquivo não encontrado", ErrorCodes::FILE_NOT_FOUND);
         }
 
         $file = File::get($full_file_path);
@@ -328,18 +309,18 @@ class ExamController extends Controller
      * @param int|null $subject_id
      * @param int|null $professor_id
      * @param int|null $exam_id
-     * @return JsonResponse|null Returns null if the IDs are correct. Or a JSON response otherwise.
+     * @throws Exception INVALID_IDENTIFIER
      */
     private function validate_input_ids($course_id, $subject_id, $professor_id, $exam_id){
         if(is_null($course_id)){
-            return $this->resource_error();
+            throw new Exception("ID do Curso não pode ser nulo", ErrorCodes::INVALID_IDENTIFIER);
         }
 
         if(!is_null($subject_id)){
             // Validate pair course-subject
             $subject = Subject::whereId($subject_id)->where('course_id', $course_id)->first();
             if (empty($subject)) {
-                return $this->resource_error();
+                throw new Exception("Disciplina não encontrada no curso solicitado", ErrorCodes::INVALID_IDENTIFIER);
             }
         }
 
@@ -347,7 +328,7 @@ class ExamController extends Controller
             // Validate pair course-subject
             $professor = Professor::whereId($professor_id)->where('course_id', $course_id)->first();
             if (empty($professor)) {
-                return $this->resource_error();
+                throw new Exception("Docente não encontrado no curso solicitado", ErrorCodes::INVALID_IDENTIFIER);
             }
         }
 
@@ -355,16 +336,16 @@ class ExamController extends Controller
             if(!empty($subject)){
                 $exam = $subject->exams()->where('id', $exam_id)->first();
                 if (empty($exam)) {
-                    return $this->resource_error();
+                    throw new Exception("Prova não encontrada na disciplina solicitada", ErrorCodes::INVALID_IDENTIFIER);
                 }
             } else if (!empty($professor)){
                 $exam = $professor->exams()->where('id', $exam_id)->first();
                 if (empty($exam)) {
-                    return $this->resource_error();
+                    throw new Exception("Prova não encontrada no professor solicitado", ErrorCodes::INVALID_IDENTIFIER);
                 }
             }
         }
 
-        return null;
+        return;
     }
 }
