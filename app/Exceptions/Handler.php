@@ -49,6 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+//        return parent::render($request, $exception);
+        if(config('app.debug') == false) {
+            return response()->json(["error_code" => $exception->getCode(), "error_message" => $exception->getMessage()], 400);
+        } else {
+            return response()->json(["error_code" => $exception->getCode(), "error_message" => $exception->getMessage(), "trace" => $exception->getTraceAsString()], 400);
+        }
     }
 }
