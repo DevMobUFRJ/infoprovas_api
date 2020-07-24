@@ -222,7 +222,7 @@ class ExamController extends Controller
                 'exam_type_id' => 'required|integer|exists:exam_types,id',
             ]);
         } catch (ValidationException $e){
-            throw new Exception($this->validation_error_str($e), ErrorCodes::ERROR_VALIDATING_FORM);
+            $this->throw_validation_error($e);
         }
 
         // Validate Google id

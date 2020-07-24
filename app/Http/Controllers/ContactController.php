@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Contact;
 use App\Http\CaptchaHelper;
+use App\Http\ErrorCodes;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -32,6 +34,8 @@ class ContactController extends Controller
      * @param Request $request
      * @return JsonResponse
      *
+     * @throws Exception ERROR_SAVING_TO_DATABASE
+     * @throws Exception INVALID_GOOGLE_CAPTCHA
      */
     public function submitContact(Request $request){
         try {
@@ -43,19 +47,19 @@ class ContactController extends Controller
                 'g-recaptcha-response' => 'required:string',
             ]);
         } catch (ValidationException $e){
-            return $this->validation_error($e);
+            $this->throw_validation_error($e);
         }
 
         $contact_params = $request->toArray();
 
         if(!CaptchaHelper::verify_token($contact_params['g-recaptcha-response'])){
-            return $this->request_json_error_personalized("Invalid Captcha", 401);
+            throw new Exception("Captcha inválido.", ErrorCodes::INVALID_GOOGLE_CAPTCHA);
         }
 
         $contact = (new Contact())->create($contact_params);
 
         if(empty($contact)){
-            return $this->request_json_error_response("Unable to save message to database");
+            throw new Exception("Erro ao salvar contato.", ErrorCodes::ERROR_SAVING_TO_DATABASE);
         }
 
         return response()->json(['success' => 'Message submitted']);

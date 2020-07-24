@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Http\ErrorCodes;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -26,11 +28,12 @@ class CourseController extends Controller
      * @param Request $request
      * @param $course_id
      * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER If the course id is not found.
      */
     function get(Request $request, $course_id){
         $course = Course::whereId($course_id)->first();
         if(empty($course)){
-            return $this->resource_error();
+            throw new Exception("Curso não encontrado", ErrorCodes::INVALID_IDENTIFIER);
         } else {
             return response()->json($course);
         }

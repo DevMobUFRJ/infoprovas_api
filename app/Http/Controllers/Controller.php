@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\ErrorCodes;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -9,37 +11,17 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     /**
-     * Returns a 404 error with a default message 'Resource missing'.
-     * @return JsonResponse Response to forward to the user
-     */
-    function resource_error(){
-        return $this->request_json_error_response('Resource missing');
-    }
-
-    /**
-     * Returns a 404 error with the error message specified.
-     * @param string $message
-     * @return JsonResponse
-     */
-    function request_json_error_response(string $message){
-        return response()->json(['error' => $message], 404);
-    }
-
-    function request_json_error_personalized(string $message, $http_code){
-        return response()->json(['error' => $message], $http_code);
-    }
-
-    /**
-     * Default exception handler for validation errors. Returns a json response to be sent to the user containing
-     * all errors in the validation.
+     * Default exception handler for validation errors. Throws an exception with the
+     * ERROR_VALIDATING_FORM error code, and the validation errors as message.
      * @param ValidationException $e
-     * @return JsonResponse
+     * @return string
+     * @throws Exception ERROR_VALIDATING_FORM
      */
-    function validation_error(ValidationException $e){
+    function throw_validation_error(ValidationException $e){
         $full_message = "";
         foreach($e->errors() as $error){
             $full_message = $full_message . $error[0] . ' ';
         }
-        return $this->request_json_error_response($full_message);
+        throw new Exception($full_message, ErrorCodes::ERROR_VALIDATING_FORM);
     }
 }

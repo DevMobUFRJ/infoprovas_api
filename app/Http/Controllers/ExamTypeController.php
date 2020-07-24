@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\ExamType;
+use App\Http\ErrorCodes;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -18,7 +21,7 @@ class ExamTypeController extends Controller
     /**
      * List Exam Types
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     function getAll(Request $request)
     {
@@ -29,13 +32,14 @@ class ExamTypeController extends Controller
      * Get Exam Type information
      * @param Request $request
      * @param $exam_type_id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function get(Request $request, $exam_type_id)
     {
         $exam_type = ExamType::whereId($exam_type_id)->get()->first();
         if (empty($exam_type)) {
-            return $this->resource_error();
+            throw new Exception("ID de tipo de prova inválido", ErrorCodes::INVALID_IDENTIFIER);
         }
 
         return response()->json($exam_type);

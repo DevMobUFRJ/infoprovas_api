@@ -37,7 +37,7 @@ curl -X POST \
     "http://localhost:8000/api/contact" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"doloremque","email":"dolorum","subject":"suscipit","message":"error","g-recaptcha-response":"voluptas"}'
+    -d '{"name":"repellendus","email":"ullam","subject":"saepe","message":"quis","g-recaptcha-response":"quisquam"}'
 
 ```
 
@@ -52,11 +52,11 @@ let headers = {
 };
 
 let body = {
-    "name": "doloremque",
-    "email": "dolorum",
-    "subject": "suscipit",
-    "message": "error",
-    "g-recaptcha-response": "voluptas"
+    "name": "repellendus",
+    "email": "ullam",
+    "subject": "saepe",
+    "message": "quis",
+    "g-recaptcha-response": "quisquam"
 }
 
 fetch(url, {
@@ -347,7 +347,7 @@ curl -X POST \
     "http://localhost:8000/api/courses/1/new_exam" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"semester":"2020.1","file":"et","google_id":"tony.stark@gmail.com","google_token":"officiis","subject_id":1,"professor_id":1,"exam_type_id":1}'
+    -d '{"semester":"2020.1","file":"quidem","google_id":"tony.stark@gmail.com","google_token":"voluptatem","subject_id":1,"professor_id":1,"exam_type_id":1}'
 
 ```
 
@@ -363,9 +363,9 @@ let headers = {
 
 let body = {
     "semester": "2020.1",
-    "file": "et",
+    "file": "quidem",
     "google_id": "tony.stark@gmail.com",
-    "google_token": "officiis",
+    "google_token": "voluptatem",
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1
@@ -1438,11 +1438,12 @@ fetch(url, {
 ```
 
 
-> Example response (404):
+> Example response (400):
 
 ```json
 {
-    "error": "Resource missing"
+    "error_code": 10,
+    "error_message": "Prova não encontrada no professor solicitado"
 }
 ```
 
@@ -1483,11 +1484,12 @@ fetch(url, {
 ```
 
 
-> Example response (404):
+> Example response (400):
 
 ```json
 {
-    "error": "Resource missing"
+    "error_code": 10,
+    "error_message": "Prova não encontrada no professor solicitado"
 }
 ```
 

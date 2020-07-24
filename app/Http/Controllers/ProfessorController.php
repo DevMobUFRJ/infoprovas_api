@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use App\Http\ErrorCodes;
 use App\Professor;
+use Exception;
 use Illuminate\Http\Request;
 
 /**
@@ -20,12 +22,13 @@ class ProfessorController extends Controller
      * @param Request $request
      * @param $course_id
      * @return \Illuminate\Http\JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function getAll(Request $request, $course_id)
     {
         $course = Course::whereId($course_id)->first();
         if (empty($course)) {
-            return $this->resource_error();
+            throw new Exception("Curso não encontrado", ErrorCodes::INVALID_IDENTIFIER);
         }
 
         return response()->json($course->professors);
@@ -37,12 +40,13 @@ class ProfessorController extends Controller
      * @param $course_id
      * @param $professor_id
      * @return \Illuminate\Http\JsonResponse
+     * @throws Exception INVALID_IDENTIFIER
      */
     function get(Request $request, $course_id, $professor_id)
     {
         $professor = Professor::whereId($professor_id)->where('course_id', $course_id)->first();
         if (empty($professor)) {
-            return $this->resource_error();
+            throw new Exception("Professor não encontrado", ErrorCodes::INVALID_IDENTIFIER);
         }
 
         return response()->json($professor);

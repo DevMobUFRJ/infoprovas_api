@@ -61,7 +61,7 @@
     "http://localhost:8000/api/contact" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"name":"doloremque","email":"dolorum","subject":"suscipit","message":"error","g-recaptcha-response":"voluptas"}'
+    -d '{"name":"repellendus","email":"ullam","subject":"saepe","message":"quis","g-recaptcha-response":"quisquam"}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/contact"
@@ -73,11 +73,11 @@ let headers = {
 };
 
 let body = {
-    "name": "doloremque",
-    "email": "dolorum",
-    "subject": "suscipit",
-    "message": "error",
-    "g-recaptcha-response": "voluptas"
+    "name": "repellendus",
+    "email": "ullam",
+    "subject": "saepe",
+    "message": "quis",
+    "g-recaptcha-response": "quisquam"
 }
 
 fetch(url, {
@@ -337,7 +337,7 @@ More info at <a href="https://developers.google.com/identity/sign-in/web/sign-in
     "http://localhost:8000/api/courses/1/new_exam" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
-    -d '{"semester":"2020.1","file":"et","google_id":"tony.stark@gmail.com","google_token":"officiis","subject_id":1,"professor_id":1,"exam_type_id":1}'
+    -d '{"semester":"2020.1","file":"quidem","google_id":"tony.stark@gmail.com","google_token":"voluptatem","subject_id":1,"professor_id":1,"exam_type_id":1}'
 </code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost:8000/api/courses/1/new_exam"
@@ -350,9 +350,9 @@ let headers = {
 
 let body = {
     "semester": "2020.1",
-    "file": "et",
+    "file": "quidem",
     "google_id": "tony.stark@gmail.com",
-    "google_token": "officiis",
+    "google_token": "voluptatem",
     "subject_id": 1,
     "professor_id": 1,
     "exam_type_id": 1
@@ -1394,10 +1394,11 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <blockquote>
-<p>Example response (404):</p>
+<p>Example response (400):</p>
 </blockquote>
 <pre><code class="language-json">{
-    "error": "Resource missing"
+    "error_code": 10,
+    "error_message": "Prova não encontrada no professor solicitado"
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/courses/{course_id}/professors/{professor_id}/exams/{exam_id}</code></p>
@@ -1427,10 +1428,11 @@ fetch(url, {
     .then(response =&gt; response.json())
     .then(json =&gt; console.log(json));</code></pre>
 <blockquote>
-<p>Example response (404):</p>
+<p>Example response (400):</p>
 </blockquote>
 <pre><code class="language-json">{
-    "error": "Resource missing"
+    "error_code": 10,
+    "error_message": "Prova não encontrada no professor solicitado"
 }</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/courses/{course_id}/professors/{professor_id}/exams/{exam_id}/file</code></p>
