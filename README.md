@@ -1,7 +1,14 @@
 # InfoProvas API
 API/Backend do sistema do InfoProvas, consumida pelos apps e pelo site.
 
-Documentação da API: https://devmobufrj.github.io/infoprovas_api/
+O projeto InfoProvas está sendo atualizado pelo DevMob, com criação de API, Site e App novos.
+
+Tem interesse em participar da nova implementação? Entre em contato conosco por email ou uma de nossas redes sociais. 
+
+Precisa de ajuda pra implementar o InfoProvas para o seu curso/faculdade? Pode chamar também!
+
+## Documentação
+https://devmobufrj.github.io/infoprovas_api/
 
 ## Setup local
 A API usa PHP >= 7.2 e Lumen, e banco de dados MySQL. Siga os passos abaixo para configurar o ambiente
