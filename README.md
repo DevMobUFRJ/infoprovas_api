@@ -8,7 +8,7 @@ Tem interesse em participar da nova implementação? Entre em contato conosco po
 Precisa de ajuda pra implementar o InfoProvas para o seu curso/faculdade? Pode chamar também!
 
 ## Documentação
-https://devmobufrj.github.io/infoprovas_api/
+https://devmobufrj.github.io/infoprovas-api/
 
 ## Setup local
 A API usa PHP >= 7.2 e Lumen, e banco de dados MySQL. Siga os passos abaixo para configurar o ambiente
